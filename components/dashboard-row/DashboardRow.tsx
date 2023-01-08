@@ -29,18 +29,19 @@ const formatter = new Intl.NumberFormat("en-US", {
           .replace(".00", "")}
       </Table.Cell>
       <Table.Cell className={vehicle.pctChangeMedianPrice90Days >= 0 ? "text-green-500" : "text-red-500"}>
-        <div style={{ display: "inline-block" }}>
+        <div style={{ display: "flex", alignItems: "center" }}>
           {vehicle.pctChangeMedianPrice90Days >= 0 ? upArrow : downArrow}&nbsp;{Math.abs(vehicle.pctChangeMedianPrice90Days * 100).toFixed(1)}%
         </div>
       </Table.Cell>
       <Table.Cell className={vehicle.pctChangeMedianPrice365Days >= 0 ? "text-green-500" : "text-red-500"}>
-        <div style={{ display: "inline-block" }}>
+        <div style={{ display: "flex", alignItems: "center" }}>
           {vehicle.pctChangeMedianPrice365Days >= 0 ? upArrow : downArrow}&nbsp;{Math.abs(vehicle.pctChangeMedianPrice365Days * 100).toFixed(1)}%
         </div>
       </Table.Cell>
       <Table.Cell>{vehicle.volume90Days}</Table.Cell>
     </Table.Row>
   );
+  
   
   
   
