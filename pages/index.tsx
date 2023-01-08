@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import VehicleService from "./api/VehicleService";
 import { vehicleService } from "./api/ServiceInitializer";
 import IDashboardModel from "../interfaces/IDashboardModel";
+import DashboardRow from "../components/dashboard-row/DashboardRow";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,13 +25,10 @@ export default function Home() {
     fetchData();
   }, []);
 
-  const formatter = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
+  
 
   function getDashboardByMake(make: string) {
-    if(make === "All Vehicles") {
+    if (make === "All Vehicles") {
       vehicleService.getDashboard().then((data) => setDashboard(data));
       setSelectedMake(make);
       return;
@@ -61,64 +59,59 @@ export default function Home() {
             Vehicles
           </Navbar.Link>
           <Navbar.Link href="/navbars">Markets</Navbar.Link>
-          <Navbar.Link href="/navbars">Contact</Navbar.Link>
         </Navbar.Collapse>
       </Navbar>
       <div className="flex justify-center ">
-<div className="w-11/12 text-center items-center content-center self-center">
-  <div className="mt-5 mb-2">
-          <Dropdown label={selectedMake} color={"gray"} size="xs" >
-            {selectedMake !== "All Vehicles" && <Dropdown.Item onClick={() => getDashboardByMake("All Vehicles")}>All Vehicles</Dropdown.Item>}
-           {makes.map((make) => (
-            <>
-              {selectedMake !== make && <Dropdown.Item onClick={() => getDashboardByMake(make)}>{make}</Dropdown.Item>}
-            </>
-            ))}
-          </Dropdown>
+        <div className="w-11/12 text-center items-center content-center self-center">
+          <div className="mt-5 mb-2">
+            <Dropdown label={selectedMake} color={"gray"} size="xs">
+              {selectedMake !== "All Vehicles" && (
+                <Dropdown.Item
+                  onClick={() => getDashboardByMake("All Vehicles")}
+                >
+                  All Vehicles
+                </Dropdown.Item>
+              )}
+              {makes.map((make) => (
+                <>
+                  {selectedMake !== make && (
+                    <Dropdown.Item onClick={() => getDashboardByMake(make)}>
+                      {make}
+                    </Dropdown.Item>
+                  )}
+                </>
+              ))}
+            </Dropdown>
           </div>
-      
 
-      <Table hoverable={true}>
-        <Table.Head>
-          <Table.HeadCell>Vehicle</Table.HeadCell>
-          <Table.HeadCell>
-            <Tooltip
-              content={
-                <span style={{ textTransform: "none" }}>
-                  The median price of the vehicle in the last 90 days.
-                </span>
-              }
-              animation="duration-500"
-            >
-              Price
-            </Tooltip>
-          </Table.HeadCell>
-          <Table.HeadCell>90d</Table.HeadCell>
-          <Table.HeadCell>365d</Table.HeadCell>
-          <Table.HeadCell>Volume</Table.HeadCell>
-        </Table.Head>
-        <Table.Body className="divide-y">
-          {dashboard?.map((vehicle) => (
-            <>
-              <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                  {vehicle.name}
-                </Table.Cell>
-                <Table.Cell>
-                  {formatter
-                    .format(Math.round(vehicle.medianPrice90Days))
-                    .toString()
-                    .replace(".00", "")}
-                </Table.Cell>
-                <Table.Cell>{(vehicle.pctChangeMedianPrice90Days * 100).toFixed(1)}%</Table.Cell>
-                <Table.Cell>{(vehicle.pctChangeMedianPrice365Days * 100).toFixed(1)}%</Table.Cell>
-                <Table.Cell>{vehicle.volume90Days}</Table.Cell>
-              </Table.Row>
-            </>
-          ))}
-        </Table.Body>
-      </Table>
-      </div>
+          <Table hoverable={true}>
+            <Table.Head>
+              <Table.HeadCell>Vehicle</Table.HeadCell>
+              <Table.HeadCell>
+                <Tooltip
+                  content={
+                    <span style={{ textTransform: "none" }}>
+                      The median price of the vehicle in the last 90 days.
+                    </span>
+                  }
+                  animation="duration-500"
+                >
+                  Price
+                </Tooltip>
+              </Table.HeadCell>
+              <Table.HeadCell>90d</Table.HeadCell>
+              <Table.HeadCell>365d</Table.HeadCell>
+              <Table.HeadCell>Volume</Table.HeadCell>
+            </Table.Head>
+            <Table.Body className="divide-y">
+              {dashboard?.map((vehicle) => (
+                <>
+                  <DashboardRow vehicle={vehicle} />
+                </>
+              ))}
+            </Table.Body>
+          </Table>
+        </div>
       </div>
       <Footer container={true}>
         <div className="w-full text-center">
