@@ -29,14 +29,19 @@ const formatter = new Intl.NumberFormat("en-US", {
           .replace(".00", "")}
       </Table.Cell>
       <Table.Cell className={vehicle.pctChangeMedianPrice90Days >= 0 ? "text-green-500" : "text-red-500"}>
-        {vehicle.pctChangeMedianPrice90Days >= 0 ? upArrow : downArrow}&nbsp;{Math.abs(vehicle.pctChangeMedianPrice90Days * 100).toFixed(1)}%
+        <div style={{ display: "inline-block" }}>
+          {vehicle.pctChangeMedianPrice90Days >= 0 ? upArrow : downArrow}&nbsp;{Math.abs(vehicle.pctChangeMedianPrice90Days * 100).toFixed(1)}%
+        </div>
       </Table.Cell>
       <Table.Cell className={vehicle.pctChangeMedianPrice365Days >= 0 ? "text-green-500" : "text-red-500"}>
-        {vehicle.pctChangeMedianPrice365Days >= 0 ? upArrow : downArrow}&nbsp;{Math.abs(vehicle.pctChangeMedianPrice365Days * 100).toFixed(1)}%
+        <div style={{ display: "inline-block" }}>
+          {vehicle.pctChangeMedianPrice365Days >= 0 ? upArrow : downArrow}&nbsp;{Math.abs(vehicle.pctChangeMedianPrice365Days * 100).toFixed(1)}%
+        </div>
       </Table.Cell>
       <Table.Cell>{vehicle.volume90Days}</Table.Cell>
     </Table.Row>
   );
+  
   
   
 export default DashboardRow;
