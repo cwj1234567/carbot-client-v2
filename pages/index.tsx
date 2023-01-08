@@ -48,7 +48,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Navbar fluid={true} rounded={true}>
+      <Navbar fluid={true} rounded={true} className="bg-[#F9FAFB]">
         <Navbar.Brand href="https://carbot.lol">
           🚗🤖&nbsp;
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
@@ -64,9 +64,10 @@ export default function Home() {
           <Navbar.Link href="/navbars">Contact</Navbar.Link>
         </Navbar.Collapse>
       </Navbar>
-      <div className="flex flex-wrap items-center gap-2 m-5">
-        <div>
-          <Dropdown label={selectedMake} color={"gray"} size="xs">
+      <div className="flex justify-center ">
+<div className="w-11/12 text-center items-center content-center self-center">
+  <div className="mt-5 mb-2">
+          <Dropdown label={selectedMake} color={"gray"} size="xs" >
             {selectedMake !== "All Vehicles" && <Dropdown.Item onClick={() => getDashboardByMake("All Vehicles")}>All Vehicles</Dropdown.Item>}
            {makes.map((make) => (
             <>
@@ -74,9 +75,8 @@ export default function Home() {
             </>
             ))}
           </Dropdown>
-        </div>
-      </div>
-
+          </div>
+      
 
       <Table hoverable={true}>
         <Table.Head>
@@ -118,6 +118,8 @@ export default function Home() {
           ))}
         </Table.Body>
       </Table>
+      </div>
+      </div>
       <Footer container={true}>
         <div className="w-full text-center">
           <Footer.Copyright href="#" by="carbot" year={2023} />
