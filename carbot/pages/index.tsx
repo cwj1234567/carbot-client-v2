@@ -77,6 +77,7 @@ export default function Home() {
         </div>
       </div>
 
+
       <Table hoverable={true}>
         <Table.Head>
           <Table.HeadCell>Vehicle</Table.HeadCell>
