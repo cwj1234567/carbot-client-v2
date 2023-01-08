@@ -1,7 +1,7 @@
 import axios from "axios";
 import IDashboardModel from "../../interfaces/IDashboardModel";
 
-const baseUrl = "http://localhost:8181";
+const baseUrl = "https://api.carbot.lol";
 
 class VehicleService {
   async getDashboard(): Promise<IDashboardModel[]> {
