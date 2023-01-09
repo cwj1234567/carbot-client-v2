@@ -7,18 +7,25 @@ import DashboardRow from "../components/dashboard-row/DashboardRow";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 
-export default function Home() {
-  const [dashboard, setDashboard] = useState<IDashboardModel[] | undefined>();
-  const [makes, setMakes] = useState<string[]>([]);
+export const getServerSideProps = async () => {
+  const dashboard = await vehicleService.getDashboard();
+  const makes = await vehicleService.getMakes();
+  return {
+    props: {
+      dashboard,
+      makes,
+    },
+  };
+};
+
+
+export default function Home({ dashboard: initialDashboard, makes: initialMakes }: { dashboard: IDashboardModel[], makes: string[] }) {
+  const [dashboard, setDashboard] = useState(initialDashboard);
+  const [makes, setMakes] = useState(initialMakes);
   const [selectedMake, setSelectedMake] = useState<string>("All Vehicles");
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setDashboard(await vehicleService.getDashboard());
-      setMakes(await vehicleService.getMakes());
-    };
-    fetchData();
-  }, []);
+  
+
 
   async function getDashboardByMake(make: string) {
     let data;
