@@ -41,10 +41,9 @@ export default function Home() {
         </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse>
-          <Navbar.Link href="/navbars" active={true}>
+          <Navbar.Link href="/" active={true}>
             Vehicles
           </Navbar.Link>
-          <Navbar.Link href="/navbars">Markets</Navbar.Link>
         </Navbar.Collapse>
       </Navbar>
       <div className="flex justify-center ">
@@ -127,7 +126,7 @@ export default function Home() {
       </div>
       <Footer container={true}>
         <div className="w-full text-center">
-          <Footer.Copyright href="#" by="carbot" year={2023} />
+          <Footer.Copyright href="#" by="CARBOT" year={2023} />
         </div>
       </Footer>
     </>
