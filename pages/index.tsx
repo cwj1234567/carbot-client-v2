@@ -87,7 +87,6 @@ export default function Home() {
                   >
                     <FontAwesomeIcon
                       icon={faInfoCircle}
-                      size="sm"
                       style={{ color: "#A6B0C3" }}
                     />
                   </Tooltip>
@@ -109,7 +108,7 @@ export default function Home() {
                   >
                     <FontAwesomeIcon
                       icon={faInfoCircle}
-                      size="sm"
+                    
                       style={{ color: "#A6B0C3" }}
                     />
                   </Tooltip>
