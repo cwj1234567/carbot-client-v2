@@ -3,13 +3,11 @@ import type { AppProps } from "next/app";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import Head from "next/head";
-import Loader from "../components/loader/Loader";
 config.autoAddCss = false;
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
-     <Loader />
       <Head>
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
