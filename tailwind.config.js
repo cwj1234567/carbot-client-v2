@@ -51,12 +51,12 @@ module.exports = {
       },
       fontFamily: {
         sans: [
+          "helvetica",
           "Inter",
           "-apple-system",
           "BlinkMacSystemFont",
           "Segoe UI",
           "Roboto",
-          "Helvetica",
           "Arial",
           "sans-serif",
         ],
