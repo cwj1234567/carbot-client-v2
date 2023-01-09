@@ -20,15 +20,17 @@ export default function Home() {
     fetchData();
   }, []);
 
-  function getDashboardByMake(make: string) {
+  async function getDashboardByMake(make: string) {
+    let data;
     if (make === "All Vehicles") {
-      vehicleService.getDashboard().then((data) => setDashboard(data));
-      setSelectedMake(make);
-      return;
+      data = await vehicleService.getDashboard();
+    } else {
+      data = await vehicleService.getDashboardByMake(make);
     }
-    vehicleService.getDashboardByMake(make).then((data) => setDashboard(data));
+    setDashboard(data);
     setSelectedMake(make);
   }
+  
 
   return (
     <>

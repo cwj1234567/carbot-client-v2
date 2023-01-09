@@ -35,17 +35,12 @@ export default function Vehicle() {
       </Navbar>
       <div className="flex justify-center ">
         <div className="w-11/12 text-center items-center content-center self-center">
-          <div className="mt-2 mb-2">
-          
-              <Breadcrumb>
-                <BreadcrumbItem href="/" text="Vehicles" />
-                <BreadcrumbItem href="/" text="Porsche 996" />
-              </Breadcrumb>
+          <div className="mt-7 mb-2">
+            <div className="text-left">
+          <h1>Porsche 996</h1>
+          </div>
             
-            <Button.Group>
-              <Button color="gray">Overview</Button>
-              <Button color="gray">Records</Button>
-            </Button.Group>
+            
           </div>
         </div>
       </div>
