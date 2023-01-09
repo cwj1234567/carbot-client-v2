@@ -51,11 +51,11 @@ export default function Home({ dashboard: initialDashboard, makes: initialMakes 
           </span>
         </Navbar.Brand>
         <Navbar.Toggle />
-        <Navbar.Collapse>
+        {/* <Navbar.Collapse>
           <Navbar.Link href="/" active={true}>
             Vehicles
           </Navbar.Link>
-        </Navbar.Collapse>
+        </Navbar.Collapse> */}
       </Navbar>
       <div className="flex justify-center ">
         <div className="w-11/12 text-center items-center content-center self-center">
