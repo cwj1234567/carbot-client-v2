@@ -33,7 +33,9 @@ export default function Home() {
   
 
   return (
+    
     <>
+    
       <Navbar fluid={true} rounded={true} className="bg-[#F9FAFB]">
         <Navbar.Brand href="https://carbot.lol">
           🚗🤖&nbsp;
@@ -131,6 +133,7 @@ export default function Home() {
           <Footer.Copyright href="#" by="CARBOT" year={2023} />
         </div>
       </Footer>
+     
     </>
   );
 }
