@@ -1,6 +1,6 @@
 import axios from "axios";
 import IDashboardModel from "../../interfaces/IDashboardModel";
-import { action, makeObservable, observable } from 'mobx';
+import { action, makeObservable, observable } from "mobx";
 
 const baseUrl = "https://api.carbot.lol";
 
@@ -10,9 +10,8 @@ class VehicleService {
   constructor() {
     makeObservable(this, {
       // Observables
-     
+
       isLoading: observable,
-    
     });
   }
 
@@ -20,7 +19,7 @@ class VehicleService {
     try {
       this.isLoading = true;
       const response = await axios.get<IDashboardModel[]>(
-        baseUrl + "/vehicle/dashboard"
+        `${baseUrl}/dashboard`
       );
       this.isLoading = false;
       return response.data;
@@ -35,9 +34,10 @@ class VehicleService {
   async getDashboardByMake(make: string): Promise<IDashboardModel[]> {
     try {
       this.isLoading = true;
-      const response = await axios.get<IDashboardModel[]>(
-        baseUrl + "/vehicle/dashboard/" + make
-      );
+      const params = new URLSearchParams();
+      params.set("make", make);
+      const url = `${baseUrl}/dashboard?${params.toString()}`;
+      const response = await axios.get<IDashboardModel[]>(url);
       this.isLoading = false;
       return response.data;
     } catch (error) {
@@ -51,8 +51,8 @@ class VehicleService {
   async getMakes(): Promise<string[]> {
     try {
       this.isLoading = true;
-      const response = await axios.get<string[]>(baseUrl + "/vehicle/make");
-       this.isLoading = false;
+      const response = await axios.get<string[]>(`${baseUrl}/vehicle/make`);
+      this.isLoading = false;
       return response.data;
     } catch (error) {
       console.error(error);
