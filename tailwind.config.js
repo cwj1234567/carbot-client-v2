@@ -49,8 +49,12 @@ module.exports = {
       borderRadius: {
         "4xl": "2rem",
       },
+      fontSize: {
+        'base': '12px',
+     },
       fontFamily: {
         sans: [
+          "-apple-system",
           "helvetica",
           "Inter",
           "-apple-system",

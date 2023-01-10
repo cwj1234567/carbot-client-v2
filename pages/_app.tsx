@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import Head from "next/head";
+import { Footer, Navbar } from "flowbite-react";
 config.autoAddCss = false;
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -32,10 +33,28 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel="canonical" href="https://www.carbot.com/" />
         <link rel="icon" href="/robot.svg" />
       </Head>
-     
-      <Component {...pageProps} />
-     
-     
+      <Navbar fluid={true} rounded={false} className="bg-[#F9FAFB]">
+        <Navbar.Brand href="https://carbot.lol">
+          🚗🤖&nbsp;
+          <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+            carbot
+          </span>
+        </Navbar.Brand>
+        <Navbar.Toggle />
+         <Navbar.Collapse>
+          {/* <Navbar.Link href="/" active={true}>
+            Vehicles
+          </Navbar.Link> */}
+        </Navbar.Collapse> 
+      </Navbar>
+      <div className="flex justify-center ">
+        <Component {...pageProps} />
+      </div>
+      <Footer container={true}>
+        <div className="w-full text-center">
+          <Footer.Copyright href="#" by="CARBOT" year={2023} />
+        </div>
+      </Footer>
     </>
   );
 }

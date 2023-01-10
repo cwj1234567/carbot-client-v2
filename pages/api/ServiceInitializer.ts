@@ -1,3 +1,3 @@
-import VehicleService from "./VehicleService";
+import CarbotService from "./CarbotService";
 
-export const vehicleService = new VehicleService();
+export const carbotService = new CarbotService();

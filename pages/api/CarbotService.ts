@@ -1,10 +1,11 @@
 import axios from "axios";
 import IDashboardModel from "../../interfaces/IDashboardModel";
 import { action, makeObservable, observable } from "mobx";
+import IVehicleModel from "../../interfaces/IVehicleModel";
 
 const baseUrl = "https://api.carbot.lol";
 
-class VehicleService {
+class CarbotService {
   isLoading: boolean = false;
 
   constructor() {
@@ -61,6 +62,22 @@ class VehicleService {
       this.isLoading = false;
     }
   }
+
+  async getVehicle(vehicleId: string): Promise<IVehicleModel> {
+    try {
+      this.isLoading = true;
+      const response = await axios.get<IVehicleModel>(
+        `${baseUrl}/vehicle/${vehicleId}`
+      );
+      this.isLoading = false;
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    } finally {
+      this.isLoading = false;
+    }
+  }
 }
 
-export default VehicleService;
+export default CarbotService;
