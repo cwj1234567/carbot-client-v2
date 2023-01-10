@@ -14,7 +14,7 @@ const VehiclePage: NextPage<{ vehicle: IVehicleModel }> = ({ vehicle }) => {
           
             <div className="mt-3 mb-3">
               <Breadcrumb>
-                <BreadcrumbItem text="Vehicles" />
+                <BreadcrumbItem text="Vehicles" href="/" />
                 <BreadcrumbItem
                   text={`${vehicle.vehicleMake} ${vehicle.vehicleModel}`}
                 />

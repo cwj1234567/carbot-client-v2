@@ -1,6 +1,7 @@
 import { faDownLong, faUpLong } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Table } from "flowbite-react";
+import Link from "next/link";
 import React, { memo } from "react";
 
 const formatter = new Intl.NumberFormat("en-US", {
@@ -15,9 +16,9 @@ const formatter = new Intl.NumberFormat("en-US", {
    <FontAwesomeIcon icon={faDownLong} style={{ color: "red" }} size="xs" />
   );
   
-
   type DashboardRowProps = {
     vehicle: {
+      vehicleId: number;
       name: string;
       medianPrice90Days: number;
       pctChangeMedianPrice90Days: number;
@@ -29,7 +30,7 @@ const formatter = new Intl.NumberFormat("en-US", {
   const DashboardRow: React.FC<DashboardRowProps> = memo(({ vehicle }) => (
     <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
       <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-        {vehicle.name}
+        <Link href={`/vehicle/${vehicle.vehicleId}`}>{vehicle.name}</Link>
       </Table.Cell>
       <Table.Cell>
         {formatter
@@ -50,8 +51,5 @@ const formatter = new Intl.NumberFormat("en-US", {
       <Table.Cell>{vehicle.volume90Days}</Table.Cell>
     </Table.Row>
   ));
-  
-  
-  
   
 export default DashboardRow;
