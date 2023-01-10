@@ -26,7 +26,7 @@ export default function Home({
   makes: string[];
 }) {
   const [dashboard, setDashboard] = useState(initialDashboard);
-  const [makes, setMakes] = useState(initialMakes);
+  const [makes] = useState(initialMakes);
   const [selectedMake, setSelectedMake] = useState<string>("All Vehicles");
 
   async function getDashboardByMake(make: string) {
@@ -43,7 +43,7 @@ export default function Home({
   return (
     <>
       <div className="w-11/12 text-center items-center content-center self-center">
-        <div className="mt-5 mb-2 text-xs">
+        <div className="mt-3 mb-3 text-xs">
           <Dropdown label={selectedMake} color={"gray"} size="xs">
             {selectedMake !== "All Vehicles" && (
               <Dropdown.Item onClick={() => getDashboardByMake("All Vehicles")}>
