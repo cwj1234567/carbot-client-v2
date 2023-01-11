@@ -1,17 +1,16 @@
-import { Button, Table } from "flowbite-react";
+import { Table } from "flowbite-react";
 import { observer } from "mobx-react-lite";
 import React from "react";
 import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import IAuctionModel from "../../interfaces/IAuctionModel";
-import IQueryModel from "../../interfaces/IQueryModel";
 import { carbotService } from "../../pages/api/ServiceInitializer";
 import parseDate from "../../utils/ParseDate";
 import IAuctionTable from "./IAuctionTable";
 
 const AuctionTable = observer(({ vehicleId }: IAuctionTable) => {
   const [nextPage, setNextPage] = useState<string | null>(null);
-  const [currentPage] = useState<string | null>(null);
+  const [] = useState<string | null>(null);
   const [auctionList, setAuctionList] = useState<IAuctionModel[]>([]);
   const [hasMore, setHasMore] = useState<boolean>(true);
 
@@ -21,7 +20,6 @@ const AuctionTable = observer(({ vehicleId }: IAuctionTable) => {
   });
 
   const getAuctionList = async () => {
-    const query: IQueryModel[] = [];
 
     let auctions = await carbotService.getAuctions(
       vehicleId.toString(),
