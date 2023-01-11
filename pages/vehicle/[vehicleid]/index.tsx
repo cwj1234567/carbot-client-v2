@@ -28,14 +28,14 @@ const VehiclePage: NextPage<{ vehicle: IVehicleModel }> = ({ vehicle }) => {
               </Breadcrumb>
             </div>
 
-            <nav className="flex border-b border-t border-gray-100 text-xs font-medium mt-2">
+            <nav className="flex border-b border-t border-gray-100 text-xs font-medium mt-2 text-gray-600">
               <a
                 href=""
                 className={`-mb-px border-b ${
                   activeTab === "overview"
                     ? "border-current text-[#1A56DB]"
                     : "border-transparent"
-                } p-4 `}
+                } p-3 `}
                 onClick={(e) => {
                   e.preventDefault();
                   setActiveTab("overview");
@@ -49,7 +49,7 @@ const VehiclePage: NextPage<{ vehicle: IVehicleModel }> = ({ vehicle }) => {
                   activeTab === "records"
                     ? "border-current text-[#1A56DB]"
                     : "border-transparent"
-                } p-4 `}
+                } p-3 `}
                 onClick={(e) => {
                   e.preventDefault();
                   setActiveTab("records");
