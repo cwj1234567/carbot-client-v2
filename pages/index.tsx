@@ -48,8 +48,9 @@ export default function Home({
           🚗🤖&nbsp;carbot.lol
           </div >
         </div>
-        <div className="mt-3 mb-3 text-xs">
-          <Dropdown label={selectedMake} color={"gray"} size="xs">
+        <div className="mt-1 mb-1 border-b border-gray-100 text-xs">
+          <div className="mt-3 mb-3 ml-3 mr-3 text-gray-600 ">
+          <Dropdown label={selectedMake} color={"gray"} size="xs" inline={true}>
             {selectedMake !== "All Vehicles" && (
               <Dropdown.Item onClick={() => getDashboardByMake("All Vehicles")}>
                 All Vehicles
@@ -65,9 +66,10 @@ export default function Home({
               </>
             ))}
           </Dropdown>
+          </div>
         </div>
 
-        <Table hoverable={true}>
+        <Table hoverable={true} className="mt-2">
           <Table.Head>
             <Table.HeadCell>Vehicle</Table.HeadCell>
             <Table.HeadCell>
