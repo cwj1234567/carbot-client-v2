@@ -45,7 +45,7 @@ export default function Home({
        <div className="mx-auto w-11/12 ">
         <div className="border-b border-gray-100  text-l">
           <div className="mb-3 mt-3 ml-3 mr-3">
-          🚗🤖&nbsp;carbot.lol
+          🚗🤖&nbsp;carbot
           </div >
         </div>
         <div className="mt-1 mb-1 border-b border-gray-100 text-xs">
