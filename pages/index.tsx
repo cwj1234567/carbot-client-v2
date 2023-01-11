@@ -68,8 +68,8 @@ export default function Home({
           </Dropdown>
           </div>
         </div>
-
-        <Table hoverable={true} className="mt-2 shadow">
+        <div className="h-auto overflow-auto">
+        <Table className="w-full text-left text-sm text-gray-500 dark:text-gray-400 mt-3 shadow">
           <Table.Head>
             <Table.HeadCell>Vehicle</Table.HeadCell>
             <Table.HeadCell>
@@ -121,6 +121,7 @@ export default function Home({
             ))}
           </Table.Body>
         </Table>
+        </div>
       </div>
     </>
   );
