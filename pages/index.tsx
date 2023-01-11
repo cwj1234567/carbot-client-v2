@@ -69,8 +69,8 @@ export default function Home({
           </div>
         </div>
         <div className="h-auto overflow-auto">
-        <Table className="w-full text-left text-sm text-gray-500 dark:text-gray-400 mt-3 shadow">
-          <Table.Head>
+        <Table className="w-full text-left text-xs text-gray-500 dark:text-gray-400 mt-3 shadow">
+          <Table.Head className="text-xs">
             <Table.HeadCell>Vehicle</Table.HeadCell>
             <Table.HeadCell>
               <div style={{ display: "flex", alignItems: "center" }}>
