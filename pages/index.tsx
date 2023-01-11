@@ -79,7 +79,7 @@ export default function Home({
                   content={
                     <span style={{ textTransform: "none" }}>
                       The median price of all sales that have occurred in the
-                      past 90 days
+                      past 90 days 😉
                     </span>
                   }
                   animation="duration-500"
