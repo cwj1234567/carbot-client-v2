@@ -1,4 +1,5 @@
 interface VehicleModel {
+    vehicleId: number
     vehicleMake: string
     vehicleModel: string
     recordedSales: number

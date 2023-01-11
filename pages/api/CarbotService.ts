@@ -2,6 +2,7 @@ import axios from "axios";
 import IDashboardModel from "../../interfaces/IDashboardModel";
 import { action, makeObservable, observable } from "mobx";
 import IVehicleModel from "../../interfaces/IVehicleModel";
+import IAuctionResponse from "../../interfaces/responses/IAuctionResponse";
 
 const baseUrl = "https://api.carbot.lol";
 
@@ -68,6 +69,29 @@ class CarbotService {
       this.isLoading = true;
       const response = await axios.get<IVehicleModel>(
         `${baseUrl}/vehicle/${vehicleId}`
+      );
+      this.isLoading = false;
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    } finally {
+      this.isLoading = false;
+    }
+  }
+
+  async getAuctions(
+    vehicleId: string,
+    page?: string
+  ): Promise<IAuctionResponse> {
+    try {
+      this.isLoading = true;
+      const params = new URLSearchParams();
+
+      if (page) params.set("page", page);
+
+      const response = await axios.get<IAuctionResponse>(
+        `${baseUrl}/vehicle/${vehicleId}/auction?${params.toString()}`
       );
       this.isLoading = false;
       return response.data;

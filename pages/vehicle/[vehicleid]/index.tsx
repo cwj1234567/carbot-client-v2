@@ -3,6 +3,7 @@ import { useState } from "react";
 import BreadcrumbItem from "../../../components/breadcrumb/breadcrum-item/BreadcrumItem";
 import Breadcrumb from "../../../components/breadcrumb/Breadcrumb";
 import IVehicleModel from "../../../interfaces/IVehicleModel";
+import AuctionTable from "../../../widgets/auction-table/AuctionTable";
 import { carbotService } from "../../api/ServiceInitializer";
 
 const VehiclePage: NextPage<{ vehicle: IVehicleModel }> = ({ vehicle }) => {
@@ -27,7 +28,7 @@ const VehiclePage: NextPage<{ vehicle: IVehicleModel }> = ({ vehicle }) => {
                 href=""
                 className={`-mb-px border-b ${
                   activeTab === "overview"
-                    ? "border-current text-blue-500"
+                    ? "border-current text-[#1A56DB]"
                     : "border-transparent"
                 } p-4 `}
                 onClick={(e) => {
@@ -41,7 +42,7 @@ const VehiclePage: NextPage<{ vehicle: IVehicleModel }> = ({ vehicle }) => {
                 href=""
                 className={`-mb-px border-b ${
                   activeTab === "records"
-                    ? "border-current text-blue-500"
+                    ? "border-current text-[#1A56DB]"
                     : "border-transparent"
                 } p-4 `}
                 onClick={(e) => {
@@ -69,7 +70,11 @@ const VehiclePage: NextPage<{ vehicle: IVehicleModel }> = ({ vehicle }) => {
                 </div>
               </div>
             ) : (
-              <div>Records content here</div>
+              <>
+            
+              <div><AuctionTable vehicleId={vehicle.vehicleId} /></div>
+              </>
+              
             )}
           </>
         )}

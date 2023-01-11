@@ -4,6 +4,11 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import Head from "next/head";
 import { Footer, Navbar } from "flowbite-react";
+import ScrollToTop from "react-scroll-up";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronUp, faCircleChevronUp } from "@fortawesome/free-solid-svg-icons";
+
+
 config.autoAddCss = false;
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -49,12 +54,17 @@ export default function App({ Component, pageProps }: AppProps) {
       </Navbar>
       <div className="flex justify-center ">
         <Component {...pageProps} />
+        <ScrollToTop showUnder={160}>
+  <span><FontAwesomeIcon icon={faCircleChevronUp} style={{ color: "black" }} size="xl" /></span>
+</ScrollToTop>
       </div>
+     
       <Footer container={true}>
         <div className="w-full text-center">
           <Footer.Copyright href="#" by="CARBOT" year={2023} />
         </div>
       </Footer>
+     
     </>
   );
 }
