@@ -11,10 +11,15 @@ const VehiclePage: NextPage<{ vehicle: IVehicleModel }> = ({ vehicle }) => {
 
   return (
     <>
-      <div className="w-11/12 text-center items-center content-center self-center">
+      <div className="mx-auto w-11/12 ">
+        <div className="border-b border-gray-100  text-l">
+          <div className="mb-3 mt-3 ml-3 mr-3">
+          🚗🤖&nbsp;carbot.lol
+          </div >
+        </div>
         {vehicle && (
           <>
-            <div className="mt-3 mb-3">
+            <div className="mt-3 mb-3 ml-3 mr-3">
               <Breadcrumb>
                 <BreadcrumbItem text="Vehicles" href="/" />
                 <BreadcrumbItem
@@ -56,14 +61,7 @@ const VehiclePage: NextPage<{ vehicle: IVehicleModel }> = ({ vehicle }) => {
 
             {activeTab === "overview" ? (
               <div className="flex w-full mt-6 mb-6">
-                <div className="grid h-20 flex-grow card bg-base-300 rounded-box place-items-center w-1/4">
-                  <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                    {vehicle.vehicleMake}&nbsp;{vehicle.vehicleModel}
-                  </h5>
-                  <p className="font-normal text-gray-700 dark:text-gray-400">
-                    Recorded Sales: {vehicle.recordedSales}
-                  </p>
-                </div>
+                <div className="grid h-20 flex-grow card bg-base-300 rounded-box place-items-center w-1/4"></div>
                 <div className="divider divider-horizontal border-r"></div>
                 <div className="grid h-20 flex-grow card bg-base-300 rounded-box place-items-center w-3/4">
                   and here is a chart 📈
@@ -71,10 +69,10 @@ const VehiclePage: NextPage<{ vehicle: IVehicleModel }> = ({ vehicle }) => {
               </div>
             ) : (
               <>
-            
-              <div><AuctionTable vehicleId={vehicle.vehicleId} /></div>
+                <div>
+                  <AuctionTable vehicleId={vehicle.vehicleId} />
+                </div>
               </>
-              
             )}
           </>
         )}

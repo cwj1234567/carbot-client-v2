@@ -38,7 +38,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel="canonical" href="https://www.carbot.com/" />
         <link rel="icon" href="/robot.svg" />
       </Head>
-      <Navbar fluid={true} rounded={false} className="bg-[#F9FAFB]">
+      {/* <Navbar fluid={true} rounded={false} className="bg-[#F9FAFB]">
         <Navbar.Brand href="https://carbot.lol">
           🚗🤖&nbsp;
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
@@ -47,12 +47,14 @@ export default function App({ Component, pageProps }: AppProps) {
         </Navbar.Brand>
         <Navbar.Toggle />
          <Navbar.Collapse>
-          {/* <Navbar.Link href="/" active={true}>
-            Vehicles
-          </Navbar.Link> */}
+       
         </Navbar.Collapse> 
-      </Navbar>
+      </Navbar> */}
+      
       <div className="flex justify-center ">
+      
+     
+     
         <Component {...pageProps} />
         <ScrollToTop showUnder={160}>
   <span><FontAwesomeIcon icon={faCircleChevronUp} style={{ color: "black" }} size="xl" /></span>

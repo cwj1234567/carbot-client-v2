@@ -42,7 +42,12 @@ export default function Home({
 
   return (
     <>
-      <div className="w-11/12 text-center items-center content-center self-center">
+       <div className="mx-auto w-11/12 ">
+        <div className="border-b border-gray-100  text-l">
+          <div className="mb-3 mt-3 ml-3 mr-3">
+          🚗🤖&nbsp;carbot.lol
+          </div >
+        </div>
         <div className="mt-3 mb-3 text-xs">
           <Dropdown label={selectedMake} color={"gray"} size="xs">
             {selectedMake !== "All Vehicles" && (
@@ -67,7 +72,7 @@ export default function Home({
             <Table.HeadCell>Vehicle</Table.HeadCell>
             <Table.HeadCell>
               <div style={{ display: "flex", alignItems: "center" }}>
-                Price&nbsp;
+                "Price"&nbsp;
                 <Tooltip
                   content={
                     <span style={{ textTransform: "none" }}>
