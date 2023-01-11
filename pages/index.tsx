@@ -69,7 +69,7 @@ export default function Home({
           </div>
         </div>
 
-        <Table hoverable={true} className="mt-2">
+        <Table hoverable={true} className="mt-2 shadow">
           <Table.Head>
             <Table.HeadCell>Vehicle</Table.HeadCell>
             <Table.HeadCell>

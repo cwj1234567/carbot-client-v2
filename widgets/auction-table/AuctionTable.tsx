@@ -45,7 +45,7 @@ const AuctionTable = observer(({ vehicleId }: IAuctionTable) => {
 
 {(auctionList?.length > 0) && (
     <><InfiniteScroll dataLength={auctionList.length} hasMore={hasMore} next={async () => { getAuctionList(); } } loader={<b></b>}>
-          <Table className="mt-3">
+          <Table className="mt-3 shadow">
             <Table.Head>
               <Table.HeadCell>date</Table.HeadCell>
               <Table.HeadCell>year</Table.HeadCell>
