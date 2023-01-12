@@ -11,12 +11,7 @@ const VehiclePage: NextPage<{ vehicle: IVehicleModel }> = ({ vehicle }) => {
 
   return (
     <> 
-      <div className="mx-auto w-11/12 ">
-        <div className="border-b border-[#E5E7EB]  text-l">
-          <div className="mb-3 mt-3 ml-3 mr-3">
-          🚗🤖&nbsp;carbot
-          </div >
-        </div>
+
         {vehicle && (
           <>
             <div className="mt-3 mb-3 ml-3 mr-3">
@@ -76,7 +71,7 @@ const VehiclePage: NextPage<{ vehicle: IVehicleModel }> = ({ vehicle }) => {
             )}
           </>
         )}
-      </div>
+    
     </>
   );
 };

@@ -42,12 +42,6 @@ export default function Home({
 
   return (
     <>
-       <div className="mx-auto w-11/12 ">
-        <div className="border-b border-[#E5E7EB]  text-l">
-          <div className="mb-3 mt-3 ml-3 mr-3">
-          🚗🤖&nbsp;carbot
-          </div >
-        </div>
         <div className="mt-1 mb-1 border-b border-[#E5E7EB] text-xs">
           <div className="mt-3 mb-3  ml-3 mr-3 text-gray-600 ">
           <Dropdown label={selectedMake} color={"gray"} size="xs" inline={true}>
@@ -122,7 +116,7 @@ export default function Home({
           </Table.Body>
         </Table>
         </div>
-      </div>
+    
     </>
   );
 }

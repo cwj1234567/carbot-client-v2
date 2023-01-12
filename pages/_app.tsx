@@ -52,7 +52,12 @@ export default function App({ Component, pageProps }: AppProps) {
       </Navbar> */}
       
       <div className="flex justify-center ">
-      
+      <div className="mx-auto w-11/12 ">
+        <div className="border-b border-[#E5E7EB]  text-l">
+          <div className="mb-3 mt-3 ml-3 mr-3">
+          🚗🤖&nbsp;carbot
+          </div >
+        </div>
      
      
         <Component {...pageProps} />
@@ -60,12 +65,13 @@ export default function App({ Component, pageProps }: AppProps) {
   <span><FontAwesomeIcon icon={faCircleChevronUp} style={{ color: "black" }} size="xl" /></span>
 </ScrollToTop>
       </div>
-     
+      </div>
       <Footer container={true}>
         <div className="w-full text-center border-[#E5E7EB]">
           <Footer.Copyright href="#" by="CARBOT" year={2023} />
         </div>
       </Footer>
+      
      
     </>
   );
