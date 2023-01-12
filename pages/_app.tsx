@@ -62,7 +62,7 @@ export default function App({ Component, pageProps }: AppProps) {
       </div>
      
       <Footer container={true}>
-        <div className="w-full text-center">
+        <div className="w-full text-center border-[#E5E7EB]">
           <Footer.Copyright href="#" by="CARBOT" year={2023} />
         </div>
       </Footer>

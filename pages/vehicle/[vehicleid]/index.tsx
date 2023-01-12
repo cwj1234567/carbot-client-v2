@@ -12,7 +12,7 @@ const VehiclePage: NextPage<{ vehicle: IVehicleModel }> = ({ vehicle }) => {
   return (
     <> 
       <div className="mx-auto w-11/12 ">
-        <div className="border-b border-gray-100  text-l">
+        <div className="border-b border-[#E5E7EB]  text-l">
           <div className="mb-3 mt-3 ml-3 mr-3">
           🚗🤖&nbsp;carbot
           </div >
@@ -28,7 +28,7 @@ const VehiclePage: NextPage<{ vehicle: IVehicleModel }> = ({ vehicle }) => {
               </Breadcrumb>
             </div>
 
-            <nav className="flex border-b border-t border-gray-100 text-xs font-medium mt-2 text-gray-600">
+            <nav className="flex border-b border-t border-[#E5E7EB] text-xs font-medium mt-2 text-gray-600">
               <a
                 href=""
                 className={`-mb-px border-b ${
