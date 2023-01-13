@@ -3,6 +3,7 @@ import IDashboardModel from "../../interfaces/IDashboardModel";
 import { action, makeObservable, observable } from "mobx";
 import IVehicleModel from "../../interfaces/IVehicleModel";
 import IAuctionResponse from "../../interfaces/responses/IAuctionResponse";
+import IPriceReportModel from "../../interfaces/IPriceReportModel";
 
 const baseUrl = "https://api.carbot.lol";
 
@@ -92,6 +93,24 @@ class CarbotService {
 
       const response = await axios.get<IAuctionResponse>(
         `${baseUrl}/vehicle/${vehicleId}/auction?${params.toString()}`
+      );
+      this.isLoading = false;
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    } finally {
+      this.isLoading = false;
+    }
+  }
+
+  async getRollingMedianReport(
+    vehicleId: string
+  ): Promise<IPriceReportModel[]> {
+    try {
+      this.isLoading = true;
+      const response = await axios.get<IPriceReportModel[]>(
+        `${baseUrl}/vehicle/${vehicleId}/report/3`
       );
       this.isLoading = false;
       return response.data;
