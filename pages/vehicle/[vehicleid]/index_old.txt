@@ -56,8 +56,10 @@ const VehiclePage: NextPage<{ vehicle: IVehicleModel }> = ({ vehicle }) => {
 
             {activeTab === "overview" ? (
               <div className="flex w-full mt-6 mb-6">
-                <div className="w-full items-center text-center">
-                  📈
+                <div className="grid h-20 flex-grow card bg-base-300 rounded-box place-items-center w-1/4"></div>
+                <div className="divider divider-horizontal border-r"></div>
+                <div className="grid h-20 flex-grow card bg-base-300 rounded-box place-items-center w-3/4">
+                  and here is a chart 📈
                 </div>
               </div>
             ) : (
