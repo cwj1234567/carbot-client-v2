@@ -1,6 +1,6 @@
 import axios from "axios";
 import IDashboardModel from "../../interfaces/IDashboardModel";
-import { action, makeObservable, observable } from "mobx";
+
 import IVehicleModel from "../../interfaces/IVehicleModel";
 import IAuctionResponse from "../../interfaces/responses/IAuctionResponse";
 import IPriceReportModel from "../../interfaces/IPriceReportModel";
@@ -10,13 +10,6 @@ const baseUrl = "https://api.carbot.lol";
 class CarbotService {
   isLoading: boolean = false;
 
-  constructor() {
-    makeObservable(this, {
-      // Observables
-
-      isLoading: observable,
-    });
-  }
 
   async getDashboard(): Promise<IDashboardModel[]> {
     try {

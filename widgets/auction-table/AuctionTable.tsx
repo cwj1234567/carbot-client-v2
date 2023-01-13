@@ -1,5 +1,4 @@
 import { Table } from "flowbite-react";
-import { observer } from "mobx-react-lite";
 import React from "react";
 import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -8,7 +7,7 @@ import { carbotService } from "../../pages/api/ServiceInitializer";
 import parseDate from "../../utils/ParseDate";
 import IAuctionTable from "./IAuctionTable";
 
-const AuctionTable = observer(({ vehicleId }: IAuctionTable) => {
+const AuctionTable = ({ vehicleId }: IAuctionTable) => {
   const [nextPage, setNextPage] = useState<string | null>(null);
   const [] = useState<string | null>(null);
   const [auctionList, setAuctionList] = useState<IAuctionModel[]>([]);
@@ -78,6 +77,6 @@ const AuctionTable = observer(({ vehicleId }: IAuctionTable) => {
       )}
     </>
   );
-});
+};
 
 export default AuctionTable;
