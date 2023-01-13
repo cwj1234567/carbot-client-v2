@@ -5,7 +5,6 @@ import Breadcrumb from "../../../components/breadcrumb/Breadcrumb";
 import IPriceReportModel from "../../../interfaces/IPriceReportModel";
 import IVehicleModel from "../../../interfaces/IVehicleModel";
 import AuctionTable from "../../../widgets/auction-table/AuctionTable";
-import MyChart from "../../../widgets/my-chart/MyChart";
 import { carbotService } from "../../api/ServiceInitializer";
 
 const VehiclePage: NextPage<{ vehicle: IVehicleModel }> = ({ vehicle }) => {
@@ -73,7 +72,7 @@ const VehiclePage: NextPage<{ vehicle: IVehicleModel }> = ({ vehicle }) => {
             {activeTab === "overview" ? (
               <div className="flex w-full mt-6 mb-6">
                 <div className="w-full items-center text-center">
-                   {rollingMedian && (<MyChart data={(rollingMedian as IPriceReportModel[])} /> )}
+                  📈
                 </div>
               </div>
             ) : (
