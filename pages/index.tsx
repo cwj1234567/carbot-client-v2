@@ -6,6 +6,7 @@ import IDashboardModel from "../interfaces/IDashboardModel";
 import DashboardRow from "../components/dashboard-row/DashboardRow";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { nanoid } from "nanoid";
 
 export const getServerSideProps = async () => {
   const dashboard = await carbotService.getDashboard();
@@ -53,7 +54,7 @@ export default function Home({
             {makes.map((make) => (
               <>
                 {selectedMake !== make && (
-                  <Dropdown.Item onClick={() => getDashboardByMake(make)}>
+                  <Dropdown.Item key={nanoid()} onClick={() => getDashboardByMake(make)}>
                     {make}
                   </Dropdown.Item>
                 )}
@@ -106,10 +107,10 @@ export default function Home({
               </div>
             </Table.HeadCell>
           </Table.Head>
-          <Table.Body className="divide-y">
+          <Table.Body className="divide-y" key={nanoid()}>
             {dashboard?.map((vehicle) => (
               <>
-                <DashboardRow vehicle={vehicle} />
+                <DashboardRow vehicle={vehicle} key={nanoid()} />
               </>
             ))}
           </Table.Body>
