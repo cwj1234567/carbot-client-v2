@@ -48,7 +48,10 @@ const formatter = new Intl.NumberFormat("en-US", {
           {vehicle.pctChangeMedianPrice365Days >= 0 ? upArrow : downArrow}&nbsp;{Math.abs(vehicle.pctChangeMedianPrice365Days * 100).toFixed(1)}%
         </div>
       </Table.Cell>
-      <Table.Cell>{vehicle.volume90Days}</Table.Cell>
+      <Table.Cell>{formatter
+          .format(Math.round(vehicle.volume90Days))
+          .toString()
+          .replace(".00", "")}</Table.Cell>
     </Table.Row>
   ));
   

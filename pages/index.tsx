@@ -93,8 +93,7 @@ export default function Home({
                 <Tooltip
                   content={
                     <span style={{ textTransform: "none" }}>
-                      The number of sales that have been recorded in the past 90
-                      days
+                      The cumulative sum of all sales that have occurred in the last 90 days
                     </span>
                   }
                   animation="duration-500"
