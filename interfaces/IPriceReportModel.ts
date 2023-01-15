@@ -1,5 +1,5 @@
 interface IPriceReportModel {
-    date: string
+    date: Date
     price: number
     bidValue?: number
   }
