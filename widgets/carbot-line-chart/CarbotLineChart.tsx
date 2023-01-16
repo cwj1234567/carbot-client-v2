@@ -29,13 +29,16 @@ const CarbotLineChart = (props: ICarbotLineChart) => {
         setRollingMedian(data);
         setChartColor(
           data && data.length > 0 && data[0].price < data[data.length - 1].price
-            ? "#FF0000"
-            : "#0000FF"
+            ? "#EA3943"
+            : "#16C784"
         );
       };
       fetchData();
     }
   }, [props.vehicleId]);
+
+  // green #16C784
+    // red #EA3943
 
   let options: Highcharts.Options | undefined = undefined;
 
