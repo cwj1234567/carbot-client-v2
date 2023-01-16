@@ -1,5 +1,4 @@
 import { Table } from "flowbite-react";
-import { nanoid } from "nanoid";
 import React from "react";
 import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -54,7 +53,7 @@ const AuctionTable = ({ vehicleId }: IAuctionTable) => {
 
             <Table.Body className="divide-y">
               {auctionList.map((item: IAuctionModel) => (
-                <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800"> key={nanoid()}
+                <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
                   <Table.Cell>{parseDate(item.endDate)}</Table.Cell>
                   <Table.Cell>{item.year}</Table.Cell>
                   <Table.Cell>{item.model}</Table.Cell>
