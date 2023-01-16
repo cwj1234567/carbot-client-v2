@@ -1,26 +1,24 @@
-import { format, parse } from "date-fns";
-
 import { useEffect, useState } from "react";
 import IPriceReportModel from "../../interfaces/IPriceReportModel";
 import { carbotService } from "../../pages/api/ServiceInitializer";
 import ICarbotLineChart from "./ICarbotLineChart";
-import moment from 'moment';
-import Highcharts from 'highcharts/highstock';
-import HighchartsReact from 'highcharts-react-official';
+import moment from "moment";
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
 
 const CarbotLineChart = (props: ICarbotLineChart) => {
   const [rollingMedian, setRollingMedian] = useState<
     IPriceReportModel[] | undefined
   >(undefined);
 
-  const numberFormat = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
+  const [chartColor, setChartColor] = useState<string>("#FF0000");
+
+  const numberFormat = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0
+    maximumFractionDigits: 0,
   });
-  
-  
 
   useEffect(() => {
     if (props.vehicleId && rollingMedian === undefined) {
@@ -29,60 +27,124 @@ const CarbotLineChart = (props: ICarbotLineChart) => {
           props.vehicleId.toString()
         );
         setRollingMedian(data);
+        setChartColor(
+          data && data.length > 0 && data[0].price < data[data.length - 1].price
+            ? "#FF0000"
+            : "#0000FF"
+        );
       };
       fetchData();
     }
   }, [props.vehicleId]);
 
-  const options: Highcharts.Options = {
-    title: {
-      text: ''
-    },
-    series: [{
-        type: 'line',
-        name: 'Price',
-        data: rollingMedian?.map((item) => [Number(new Date(item.date)), item.price]),
-        color: rollingMedian && rollingMedian.length > 0 && rollingMedian[0].price < rollingMedian[rollingMedian.length - 1].price ? 'red' : 'green'
-      }],
-      xAxis: {
-        type: 'datetime'
-      },
-    
-    credits: {
-        enabled: false
-      },
-      
-      rangeSelector: {
-        buttons: [{
-          type: 'day',
-          count: 90,
-          text: '90D'
-        }, {
-          type: 'day',
-          count: 365,
-          text: '365D'
-        }],
-        selected: 1,
-        inputEnabled: false,
-        
+  let options: Highcharts.Options | undefined = undefined;
+
+  if (typeof Highcharts === "object") {
+    options = {
+      title: {
+        text: "",
       },
 
-    tooltip: {
+      series: [
+        {
+          type: "area",
+          name: "Price",
+          data: rollingMedian?.map((item) => [
+            Number(new Date(item.date)),
+            item.price,
+          ]),
+          color: chartColor,
+        },
+      ],
+      xAxis: {
+        type: "datetime",
+        crosshair: {
+          width: 1,
+          zIndex: 7,
+          color: "#000000",
+        },
+      },
+      yAxis: {
+        title: {
+          text: null,
+        },
+      },
+      legend: {
+        enabled: false,
+      },
+      credits: {
+        enabled: false,
+      },
+
+      rangeSelector: {
+        buttons: [
+          {
+            type: "day",
+            count: 90,
+            text: "90D",
+          },
+          {
+            type: "day",
+            count: 365,
+            text: "365D",
+          },
+        ],
+        selected: 1,
+        inputEnabled: false,
+      },
+      navigator: {
+        enabled: false,
+      },
+
+      tooltip: {
+        shared: true,
         formatter: function () {
-            if(this.series) {
-            return '<b>' + this.series.name + '</b><br/>' +
-                moment(this.x).format('MM/DD/YYYY') + ': ' +
-            
-               numberFormat.format(this.y as any) + '<br/>' 
-            }
-            else return '';
-        }
-    }
-  };
+          return (
+            numberFormat.format(this.y as any) +
+            "</b><br/>" +
+            moment(this.x).format("MMMM Do YYYY")
+          );
+        },
+      },
+      plotOptions: {
+        area: {
+          fillColor: {
+            linearGradient: {
+              x1: 0,
+              y1: 0,
+              x2: 0,
+              y2: 1,
+            },
+            stops: [
+              [0, chartColor], //#0000FF-#4949FF
+              [
+                1,
+                Highcharts.color(chartColor)
+                  .setOpacity(0)
+                  .get("rgba") as string,
+              ],
+            ],
+          },
+          marker: {
+            radius: 2,
+          },
+          lineWidth: 1,
+          states: {
+            hover: {
+              lineWidth: 1,
+            },
+          },
+          threshold: null,
+        },
+      },
+    };
+  }
 
   return (
     <div>
-      {rollingMedian && <HighchartsReact highcharts={Highcharts} options={options}  constructorType={'stockChart'} />}
+      {rollingMedian && options && (
+        <HighchartsReact highcharts={Highcharts} options={options} />
+      )}
     </div>
   );
 };
