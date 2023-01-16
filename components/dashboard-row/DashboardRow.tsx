@@ -1,6 +1,7 @@
 import { faDownLong, faUpLong } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Table } from "flowbite-react";
+import { nanoid } from "nanoid";
 import Link from "next/link";
 import React, { memo } from "react";
 
@@ -28,7 +29,7 @@ const formatter = new Intl.NumberFormat("en-US", {
   };
   
   const DashboardRow: React.FC<DashboardRowProps> = memo(({ vehicle }) => (
-    <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+    <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800" key={nanoid()}>
       <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
         <Link href={`/vehicle/${vehicle.vehicleId}`}>{vehicle.name}</Link>
       </Table.Cell>
@@ -48,7 +49,10 @@ const formatter = new Intl.NumberFormat("en-US", {
           {vehicle.pctChangeMedianPrice365Days >= 0 ? upArrow : downArrow}&nbsp;{Math.abs(vehicle.pctChangeMedianPrice365Days * 100).toFixed(1)}%
         </div>
       </Table.Cell>
-      <Table.Cell>{vehicle.volume90Days}</Table.Cell>
+      <Table.Cell>{formatter
+          .format(Math.round(vehicle.volume90Days))
+          .toString()
+          .replace(".00", "")}</Table.Cell>
     </Table.Row>
   ));
   

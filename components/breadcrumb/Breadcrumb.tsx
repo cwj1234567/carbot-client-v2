@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import IBreadcrumb from './IBreadcrumb';
+import { nanoid } from 'nanoid';
 
 const Breadcrumb: React.FC<IBreadcrumb> = ({ children }) => (
   <>
@@ -8,7 +9,7 @@ const Breadcrumb: React.FC<IBreadcrumb> = ({ children }) => (
       <ol className="inline-flex items-center space-x-1 md:space-x-3 text-xs text-gray-600 ">
         {children?.map((child: any, index: any) => (
           <>
-            <li className="block transition hover:text-gray-700">{child}</li>
+            <li className="block transition hover:text-gray-700" key={nanoid()}>{child}</li>
           
             {index < children.length - 1 && (
                <li>
