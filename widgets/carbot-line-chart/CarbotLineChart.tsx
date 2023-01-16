@@ -12,6 +12,13 @@ const CarbotLineChart = (props: ICarbotLineChart) => {
     IPriceReportModel[] | undefined
   >(undefined);
 
+  interface Datum {
+    x: Date;
+    y: number;
+  }
+
+  const data3: Datum[] = [];
+
   useEffect(() => {
     if (props.vehicleId && rollingMedian === undefined) {
       const fetchData = async () => {
@@ -24,84 +31,35 @@ const CarbotLineChart = (props: ICarbotLineChart) => {
     }
   }, [props.vehicleId]);
 
-  const chartData = rollingMedian?.map(d => ({ 
-    x: format(d.date, 'yyyy-MM-dd'), 
-    y: d.price 
-  }));
-  
-  const data1 = [
-    {
-      x: "2018-03-01",
-      y: 30
-    },
-    {
-      x: "2018-04-01",
-      y: 16
-    },
-    {
-      x: "2018-05-01",
-      y: 17
-    },
-    {
-      x: "2018-06-01",
-      y: 24
-    },
-    {
-      x: "2018-07-01",
-      y: 47
-    },
-    {
-      x: "2018-08-01",
-      y: 32
-    },
-    {
-      x: "2018-09-01",
-      y: 8
-    },
-    {
-      x: "2018-10-01",
-      y: 27
-    },
-    {
-      x: "2018-11-01",
-      y: 31
-    },
-    {
-      x: "2018-12-01",
-      y: 105
-    },
-    {
-      x: "2019-01-01",
-      y: 166
-    },
-    {
-      x: "2019-02-01",
-      y: 181
-    },
-    {
-      x: "2019-03-01",
-      y: 232
-    },
-    {
-      x: "2019-04-01",
-      y: 224
-    },
-    {
-      x: "2019-05-01",
-      y: 196
-    },
-    {
-      x: "2019-06-01",
-      y: 211
+  useEffect(() => {
+    if (rollingMedian) {
+        rollingMedian?.map((x) => {
+            let date = new Date(x.date)
+            let year = date.getFullYear();
+            let month = (1 + date.getMonth()).toString().padStart(2, '0');
+            let day = date.getDate().toString().padStart(2, '0');
+            let formattedDate = year + '-' + month + '-' + day;
+            data3.push({x: x.date, y: x.price})
+        })
+        
     }
-  ];
+    }, [rollingMedian]);
+
+
+ 
+ 
+
+ 
+
   
   const tickLabelOffset = 10;
   
   const accessors = {
-    xAccessor: (d: { x: any; }) => new Date(`${d.x}T00:00:00`),
-    yAccessor: (d: { y: any; }) => d.y
-  };
+    xAccessor: (d: { x: Date; }) => d.x,
+    yAccessor: (d: { y: any; }) => d.y,
+};
+
+
 
   return (
    <div>
@@ -137,12 +95,15 @@ const CarbotLineChart = (props: ICarbotLineChart) => {
           tickLabelProps={() => ({ dx: -10 })}
         />
 
-        <AnimatedLineSeries
+       { data3 &&  <AnimatedLineSeries
           stroke="#008561"
           dataKey="primary_line"
-          data={data1}
+          data={data3}
           {...accessors}
         />
+        }
+
+        
         <Tooltip
           snapTooltipToDatumX
           snapTooltipToDatumY
@@ -160,7 +121,7 @@ const CarbotLineChart = (props: ICarbotLineChart) => {
                   return (
                     <div className="row" key={key}>
                       <div className="date">
-                        {format(accessors.xAccessor(value.datum as any), "MMM d")}
+                        {accessors.xAccessor(value.datum as any).toString()}
                       </div>
                       <div className="value">
                         <div>
