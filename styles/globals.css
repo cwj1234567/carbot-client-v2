@@ -26,6 +26,12 @@ a {
   }
 }
 
+@media (max-width: 1200px) {
+  .flex-container {
+    flex-direction: column;
+  }
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

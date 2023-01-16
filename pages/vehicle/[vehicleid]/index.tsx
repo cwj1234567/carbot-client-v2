@@ -88,27 +88,28 @@ const VehiclePage: NextPage<{ vehicle: IVehicleModel }> = ({ vehicle }) => {
             </nav>
 
             {activeTab === "price" ? (
-              <div className="flex w-full mt-6 mb-6">
-                <div className="w-full h-full items-center text-center basis-2/3">
-                  <div><HyperButtonGroup>
-                    <HyperButton text="90d" onClick={function (): void {
+              <div className="flex w-full mt-6 mb-6 flex-container">
+              <div className="w-full h-full items-center text-center basis-5/6">
+                <div><HyperButtonGroup>
+                  <HyperButton text="90d" onClick={function (): void {
                     console.log("Function not implemented.");
                   } } />
-                    <HyperButton text="365d" onClick={function (): void {
+                  <HyperButton text="365d" onClick={function (): void {
                     console.log("Function not implemented.");
                   } } />
-                    <HyperButton text="All" onClick={function (): void {
+                  <HyperButton text="All" onClick={function (): void {
                     console.log("Function not implemented.");
                   } } />
-                  </HyperButtonGroup>
-                  <CarbotLineChart vehicleId={vehicle.vehicleId} />
-                </div>
-                </div>
-                <div className="w-full items-center basis-1/3 ml-6 mr-6">
-                  <StatCard text="asdf"/>
-                  <StatCard text="asdf"/>
-                </div>
+                </HyperButtonGroup>
+                <CarbotLineChart vehicleId={vehicle.vehicleId} />
               </div>
+              </div>
+              <div className="w-full items-center basis-1/6 ml-6 mr-6 max-width-100">
+                <StatCard text="asdf"/>
+                <StatCard text="asdf"/>
+              </div>
+            </div>
+            
             ) : (
               <>
                 <div>

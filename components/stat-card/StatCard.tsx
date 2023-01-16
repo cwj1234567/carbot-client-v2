@@ -4,7 +4,7 @@ const StatCard: React.FC<IStatCard> = ({
   text
 }) => (
   <>
-  <article className="rounded-lg border border-gray-100 bg-white p-6 mt-6">
+  <article className="rounded-lg border border-gray-100 bg-white p-6 mt-6 w-64">
   <div>
     <p className="text-sm text-gray-500">Profit</p>
 
