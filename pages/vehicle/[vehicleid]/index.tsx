@@ -4,6 +4,7 @@ import BreadcrumbItem from "../../../components/breadcrumb/breadcrum-item/Breadc
 import Breadcrumb from "../../../components/breadcrumb/Breadcrumb";
 import HyperButtonGroup from "../../../components/hyper-button-group/HyperButtonGroup";
 import HyperButton from "../../../components/hyper-button/HyperButton";
+import StatCard from "../../../components/stat-card/StatCard";
 import IPriceReportModel from "../../../interfaces/IPriceReportModel";
 import IVehicleModel from "../../../interfaces/IVehicleModel";
 import AuctionTable from "../../../widgets/auction-table/AuctionTable";
@@ -88,8 +89,8 @@ const VehiclePage: NextPage<{ vehicle: IVehicleModel }> = ({ vehicle }) => {
 
             {activeTab === "price" ? (
               <div className="flex w-full mt-6 mb-6">
-                <div className="w-full items-center text-center">
-                  <HyperButtonGroup>
+                <div className="w-full h-full items-center text-center basis-2/3">
+                  <div><HyperButtonGroup>
                     <HyperButton text="90d" onClick={function (): void {
                     console.log("Function not implemented.");
                   } } />
@@ -101,6 +102,11 @@ const VehiclePage: NextPage<{ vehicle: IVehicleModel }> = ({ vehicle }) => {
                   } } />
                   </HyperButtonGroup>
                   <CarbotLineChart vehicleId={vehicle.vehicleId} />
+                </div>
+                </div>
+                <div className="w-full items-center basis-1/3 ml-6 mr-6">
+                  <StatCard text="asdf"/>
+                  <StatCard text="asdf"/>
                 </div>
               </div>
             ) : (
