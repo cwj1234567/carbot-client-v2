@@ -68,12 +68,12 @@ export default function Home({
             <Table.HeadCell>Vehicle</Table.HeadCell>
             <Table.HeadCell>
               <div style={{ display: "flex", alignItems: "center" }}>
-                "Price"&nbsp;
+                Price<small>*</small>&nbsp;
                 <Tooltip
                   content={
                     <span style={{ textTransform: "none" }}>
                       The median price of all sales that have occurred in the
-                      past 90 days 😉
+                      past 90 days (RMD 90) 😉
                     </span>
                   }
                   animation="duration-500"

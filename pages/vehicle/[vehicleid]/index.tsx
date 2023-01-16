@@ -11,7 +11,7 @@ import CarbotLineChart from "../../../widgets/carbot-line-chart/CarbotLineChart"
 import { carbotService } from "../../api/ServiceInitializer";
 
 const VehiclePage: NextPage<{ vehicle: IVehicleModel }> = ({ vehicle }) => {
-  const [activeTab, setActiveTab] = useState<string>("overview");
+  const [activeTab, setActiveTab] = useState<string>("price");
 
   return (
     <> 
@@ -31,34 +31,62 @@ const VehiclePage: NextPage<{ vehicle: IVehicleModel }> = ({ vehicle }) => {
               <a
                 href=""
                 className={`-mb-px border-b ${
-                  activeTab === "overview"
+                  activeTab === "price"
                     ? "border-current text-[#1A56DB]"
                     : "border-transparent"
                 } p-3 `}
                 onClick={(e) => {
                   e.preventDefault();
-                  setActiveTab("overview");
+                  setActiveTab("price");
                 }}
               >
-                Overview
+                Price
               </a>
               <a
                 href=""
                 className={`-mb-px border-b ${
-                  activeTab === "records"
+                  activeTab === "volume"
                     ? "border-current text-[#1A56DB]"
                     : "border-transparent"
                 } p-3 `}
                 onClick={(e) => {
                   e.preventDefault();
-                  setActiveTab("records");
+                  setActiveTab("volume");
                 }}
               >
-                Records
+                Volume
+              </a>
+              <a
+                href=""
+                className={`-mb-px border-b ${
+                  activeTab === "insights"
+                    ? "border-current text-[#1A56DB]"
+                    : "border-transparent"
+                } p-3 `}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setActiveTab("insights");
+                }}
+              >
+                Insights
+              </a>
+              <a
+                href=""
+                className={`-mb-px border-b ${
+                  activeTab === "data"
+                    ? "border-current text-[#1A56DB]"
+                    : "border-transparent"
+                } p-3 `}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setActiveTab("data");
+                }}
+              >
+                Data
               </a>
             </nav>
 
-            {activeTab === "overview" ? (
+            {activeTab === "price" ? (
               <div className="flex w-full mt-6 mb-6">
                 <div className="w-full items-center text-center">
                   <HyperButtonGroup>
