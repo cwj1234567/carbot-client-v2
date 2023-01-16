@@ -65,7 +65,7 @@ const VehiclePage: NextPage<{ vehicle: IVehicleModel }> = ({ vehicle }) => {
                     <HyperButton text="90d" onClick={function (): void {
                     console.log("Function not implemented.");
                   } } />
-                    <HyperButton text="1y" onClick={function (): void {
+                    <HyperButton text="365d" onClick={function (): void {
                     console.log("Function not implemented.");
                   } } />
                     <HyperButton text="All" onClick={function (): void {
