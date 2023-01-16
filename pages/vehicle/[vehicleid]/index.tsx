@@ -2,6 +2,8 @@ import { NextPage } from "next";
 import { useEffect, useState } from "react";
 import BreadcrumbItem from "../../../components/breadcrumb/breadcrum-item/BreadcrumItem";
 import Breadcrumb from "../../../components/breadcrumb/Breadcrumb";
+import HyperButtonGroup from "../../../components/hyper-button-group/HyperButtonGroup";
+import HyperButton from "../../../components/hyper-button/HyperButton";
 import IPriceReportModel from "../../../interfaces/IPriceReportModel";
 import IVehicleModel from "../../../interfaces/IVehicleModel";
 import AuctionTable from "../../../widgets/auction-table/AuctionTable";
@@ -59,6 +61,17 @@ const VehiclePage: NextPage<{ vehicle: IVehicleModel }> = ({ vehicle }) => {
             {activeTab === "overview" ? (
               <div className="flex w-full mt-6 mb-6">
                 <div className="w-full items-center text-center">
+                  <HyperButtonGroup>
+                    <HyperButton text="90d" onClick={function (): void {
+                    console.log("Function not implemented.");
+                  } } />
+                    <HyperButton text="1y" onClick={function (): void {
+                    console.log("Function not implemented.");
+                  } } />
+                    <HyperButton text="All" onClick={function (): void {
+                    console.log("Function not implemented.");
+                  } } />
+                  </HyperButtonGroup>
                   <CarbotLineChart vehicleId={vehicle.vehicleId} />
                 </div>
               </div>
