@@ -3,11 +3,11 @@ import IStatCard from "./IStatCard";
 const StatCard: React.FC<IStatCard> = ({
 }) => (
   <>
-  <article className="rounded-lg lg:border bg-white p-6 w-50">
+  <article className="rounded-lg lg:border bg-white ml-2 mt-6 mb-6">
   <div>
-    <p className="text-sm text-gray-500">Profit</p>
+    <p className="text-sm text-gray-500">Price</p>
 
-    <p className="text-2xl font-medium text-gray-900">$240.94</p>
+    <p className="text-2xl font-medium text-gray-900">$26,500</p>
   </div>
 
   <div className="mt-1 flex gap-1 text-green-600">
@@ -29,7 +29,7 @@ const StatCard: React.FC<IStatCard> = ({
     <p className="flex gap-2 text-xs">
       <span className="font-medium"> 67.81% </span>
 
-      <span className="text-gray-500"> Since last week </span>
+      <span className="text-gray-500"> Past 365 days </span>
     </p>
   </div>
 </article>
