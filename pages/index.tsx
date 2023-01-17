@@ -63,7 +63,7 @@ export default function Home({
           </div>
         </div>
         <div className="h-auto overflow-auto">
-        <Table className="w-full text-left text-xs text-gray-500 dark:text-gray-400 mt-3 shadow">
+        <Table className="w-full text-left text-xs text-gray-500 dark:text-gray-400 mt-3 shadow" hoverable={true}>
           <Table.Head className="text-xs">
             <Table.HeadCell>Vehicle</Table.HeadCell>
             <Table.HeadCell>
