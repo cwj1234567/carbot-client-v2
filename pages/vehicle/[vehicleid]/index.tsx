@@ -93,7 +93,7 @@ const VehiclePage: NextPage<{ vehicle: IVehicleModel }> = ({ vehicle }) => {
                     <StatCard text="asdf" />
                   </div>
                   <div className="row-span-1">
-                    <StatCard text="asdf" />
+                    {/* <StatCard text="asdf" /> */}
                   </div>
                 </div>
               </div>
