@@ -1,10 +1,9 @@
 import IStatCard from "./IStatCard";
 
 const StatCard: React.FC<IStatCard> = ({
-  text
 }) => (
   <>
-  <article className="rounded-lg border border-gray-100 bg-white p-6 w-64 mt-2 mb-5">
+  <article className="rounded-lg border bg-white p-6 w-50 mt-2 mb-5">
   <div>
     <p className="text-sm text-gray-500">Profit</p>
 
