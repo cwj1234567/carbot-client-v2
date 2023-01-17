@@ -3,7 +3,7 @@ import IStatCard from "./IStatCard";
 const StatCard: React.FC<IStatCard> = ({
 }) => (
   <>
-  <article className="rounded-lg border bg-white p-6 w-50 mt-2 mb-5">
+  <article className="rounded-lg lg:border bg-white p-6 w-50">
   <div>
     <p className="text-sm text-gray-500">Profit</p>
 

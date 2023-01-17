@@ -86,8 +86,18 @@ const VehiclePage: NextPage<{ vehicle: IVehicleModel }> = ({ vehicle }) => {
           </nav>
 
           {activeTab === "price" ? (
-            <div className="flex flex-col lg:flex-row mt-6 mb-6 overflow-x-auto">
-              <div className="basis-4/5 h-full items-center text-center col-span-4 overflow-x-auto ml-2 mr-2">
+            <div className="flex flex-col mb-6 overflow-x-auto">
+              <div className="items-center justify-items-center ml-3 mr-3 overflow-x-auto">
+                <div className="grid grid-cols-2 lg:grid-cols-5 gap-2">
+                  <div className="row-span-1">
+                    <StatCard text="asdf" />
+                  </div>
+                  <div className="row-span-1">
+                    <StatCard text="asdf" />
+                  </div>
+                </div>
+              </div>
+              <div className="h-full items-center text-center col-span-4 overflow-x-auto ml-2 mr-2">
                 <CarbotLineChart vehicleId={vehicle.vehicleId} />
                 <div className="mt-2 mb-3">
                   <HyperButtonGroup>
@@ -111,12 +121,6 @@ const VehiclePage: NextPage<{ vehicle: IVehicleModel }> = ({ vehicle }) => {
                     />
                   </HyperButtonGroup>
                 </div>
-              </div>
-              <div className="basis-1/5 items-center justify-items-center ml-3 mr-3 overflow-x-auto">
-             
-                <StatCard text="asdf" />
-                <StatCard text="asdf" />
-               
               </div>
             </div>
           ) : (
