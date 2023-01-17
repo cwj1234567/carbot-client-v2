@@ -1,11 +1,10 @@
 import { NextPage } from "next";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import BreadcrumbItem from "../../../components/breadcrumb/breadcrum-item/BreadcrumItem";
 import Breadcrumb from "../../../components/breadcrumb/Breadcrumb";
 import HyperButtonGroup from "../../../components/hyper-button-group/HyperButtonGroup";
 import HyperButton from "../../../components/hyper-button/HyperButton";
 import StatCard from "../../../components/stat-card/StatCard";
-import IPriceReportModel from "../../../interfaces/IPriceReportModel";
 import IVehicleModel from "../../../interfaces/IVehicleModel";
 import AuctionTable from "../../../widgets/auction-table/AuctionTable";
 import CarbotLineChart from "../../../widgets/carbot-line-chart/CarbotLineChart";
@@ -87,13 +86,11 @@ const VehiclePage: NextPage<{ vehicle: IVehicleModel }> = ({ vehicle }) => {
           </nav>
 
           {activeTab === "price" ? (
-            <div className="flex w-full mt-6 mb-6 flex-container overflow-x-auto">
-              <div className="w-full h-full items-center text-center basis-5/6">
-                <div>
-                 
-                  <CarbotLineChart vehicleId={vehicle.vehicleId} />
-                  <div className="mt-2">
-                   <HyperButtonGroup>
+            <div className="flex mt-6 mb-6 overflow-x-auto price-volume-container">
+              <div className="basis-4/5 h-full items-center text-center col-span-4 overflow-x-auto ml-2 mr-2">
+                <CarbotLineChart vehicleId={vehicle.vehicleId} />
+                <div className="mt-2 mb-3">
+                  <HyperButtonGroup>
                     <HyperButton
                       text="90d"
                       onClick={function (): void {
@@ -113,12 +110,13 @@ const VehiclePage: NextPage<{ vehicle: IVehicleModel }> = ({ vehicle }) => {
                       }}
                     />
                   </HyperButtonGroup>
-                  </div>
                 </div>
               </div>
-              <div className="w-full flex-container items-center basis-1/6 ml-6 mr-6 max-width-100">
+              <div className="basis-1/5 items-center justify-items-center ml-3 mr-3 overflow-x-auto">
+             
                 <StatCard text="asdf" />
                 <StatCard text="asdf" />
+               
               </div>
             </div>
           ) : (
