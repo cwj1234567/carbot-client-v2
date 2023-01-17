@@ -86,7 +86,7 @@ const VehiclePage: NextPage<{ vehicle: IVehicleModel }> = ({ vehicle }) => {
           </nav>
 
           {activeTab === "price" ? (
-            <div className="flex mt-6 mb-6 overflow-x-auto price-volume-container">
+            <div className="flex flex-col lg:flex-row mt-6 mb-6 overflow-x-auto">
               <div className="basis-4/5 h-full items-center text-center col-span-4 overflow-x-auto ml-2 mr-2">
                 <CarbotLineChart vehicleId={vehicle.vehicleId} />
                 <div className="mt-2 mb-3">

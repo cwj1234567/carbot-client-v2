@@ -40,8 +40,8 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/robot.svg" />
       </Head>
       <div className="flex justify-center ">
-        <div className="main-wrapper mx-auto">
-          <div className="border-b border-[#E5E7EB]  text-l">
+        <div className="w-full lg:w-5/6 2xl:w-2/3 mx-auto">
+          <div className="border-b border-[#E5E7EB] text-l">
             <div className="mb-3 mt-3 ml-3 mr-3">🚗🤖&nbsp;carbot</div>
           </div>
 
