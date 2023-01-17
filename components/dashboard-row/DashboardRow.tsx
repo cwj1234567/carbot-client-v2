@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Table } from "flowbite-react";
 import Link from "next/link";
 import React, { memo } from "react";
+import IDashboardRow from "./IDashboardRow";
+
 
 const formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -16,21 +18,11 @@ const formatter = new Intl.NumberFormat("en-US", {
    <FontAwesomeIcon icon={faDownLong} style={{ color: "red" }} size="xs" />
   );
   
-  type DashboardRowProps = {
-    vehicle: {
-      vehicleId: number;
-      name: string;
-      medianPrice90Days: number;
-      pctChangeMedianPrice90Days: number;
-      pctChangeMedianPrice365Days: number;
-      volume90Days: number;
-    };
-  };
-  
-  const DashboardRow: React.FC<DashboardRowProps> = memo(({ vehicle }) => (
+
+  const DashboardRow: React.FC<IDashboardRow> = memo(({vehicle}) => (
     <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
       <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-        <Link href={`/vehicle/${vehicle.vehicleId}`}>{vehicle.name}</Link>
+      <div className="flex align-items-center"><img src={`a/${vehicle.vehicleMake}.svg`} alt="image" className="h-4 w-4 mr-2" /><Link href={`/vehicle/${vehicle.vehicleId}`}>&nbsp;{`${vehicle.vehicleMake} ${vehicle.vehicleModel}`}</Link></div>
       </Table.Cell>
       <Table.Cell>
         {formatter

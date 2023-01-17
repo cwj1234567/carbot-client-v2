@@ -2,7 +2,8 @@
 interface IDashboardModel
  {
     vehicleId: number,
-    name: string,
+    vehicleMake: string,
+    vehicleModel: string,
     medianPrice90Days: number,
     medianPrice365Days: number,
     pctChangeMedianPrice90Days: number,
