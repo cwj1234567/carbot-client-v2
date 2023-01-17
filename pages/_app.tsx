@@ -52,7 +52,7 @@ export default function App({ Component, pageProps }: AppProps) {
       </Navbar> */}
       
       <div className="flex justify-center ">
-      <div className="mx-auto w-11/12 ">
+      <div className="mx-auto w-5/6 ">
         <div className="border-b border-[#E5E7EB]  text-l">
           <div className="mb-3 mt-3 ml-3 mr-3">
           🚗🤖&nbsp;carbot

@@ -90,7 +90,10 @@ const VehiclePage: NextPage<{ vehicle: IVehicleModel }> = ({ vehicle }) => {
             <div className="flex w-full mt-6 mb-6 flex-container overflow-x-auto">
               <div className="w-full h-full items-center text-center basis-5/6">
                 <div>
-                  <HyperButtonGroup>
+                 
+                  <CarbotLineChart vehicleId={vehicle.vehicleId} />
+                  <div className="mt-2">
+                   <HyperButtonGroup>
                     <HyperButton
                       text="90d"
                       onClick={function (): void {
@@ -110,7 +113,7 @@ const VehiclePage: NextPage<{ vehicle: IVehicleModel }> = ({ vehicle }) => {
                       }}
                     />
                   </HyperButtonGroup>
-                  <CarbotLineChart vehicleId={vehicle.vehicleId} />
+                  </div>
                 </div>
               </div>
               <div className="w-full flex-container items-center basis-1/6 ml-6 mr-6 max-width-100">
