@@ -26,22 +26,22 @@ const formatter = new Intl.NumberFormat("en-US", {
       </Table.Cell>
       <Table.Cell>
         {formatter
-          .format(Math.round(vehicle.medianPrice90Days))
+          .format(Math.round(vehicle.medianPrice90d))
           .toString()
           .replace(".00", "")}
       </Table.Cell>
-      <Table.Cell className={vehicle.pctChangeMedianPrice90Days >= 0 ? "text-green-500" : "text-red-500"}>
+      <Table.Cell className={vehicle.pctChange90d >= 0 ? "text-green-500" : "text-red-500"}>
         <div style={{ display: "flex", alignItems: "center" }}>
-          {vehicle.pctChangeMedianPrice90Days >= 0 ? upArrow : downArrow}&nbsp;{Math.abs(vehicle.pctChangeMedianPrice90Days * 100).toFixed(1)}%
+          {vehicle.pctChange90d >= 0 ? upArrow : downArrow}&nbsp;{Math.abs(vehicle.pctChange90d * 100).toFixed(1)}%
         </div>
       </Table.Cell>
-      <Table.Cell className={vehicle.pctChangeMedianPrice365Days >= 0 ? "text-green-500" : "text-red-500"}>
+      <Table.Cell className={vehicle.pctChange365d >= 0 ? "text-green-500" : "text-red-500"}>
         <div style={{ display: "flex", alignItems: "center" }}>
-          {vehicle.pctChangeMedianPrice365Days >= 0 ? upArrow : downArrow}&nbsp;{Math.abs(vehicle.pctChangeMedianPrice365Days * 100).toFixed(1)}%
+          {vehicle.pctChange365d >= 0 ? upArrow : downArrow}&nbsp;{Math.abs(vehicle.pctChange365d * 100).toFixed(1)}%
         </div>
       </Table.Cell>
       <Table.Cell>{formatter
-          .format(Math.round(vehicle.volume90Days))
+          .format(Math.round(vehicle.volume90d))
           .toString()
           .replace(".00", "")}</Table.Cell>
     </Table.Row>
