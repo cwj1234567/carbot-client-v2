@@ -25,6 +25,22 @@ a {
   }
 }
 
+.text-up-green {
+  color: #16C784;
+}
+
+.bg-up-green {
+  background-color: #16C784 !important;
+}
+
+.text-down-red {
+  color: #EA3943;
+}
+
+.bg-down-red {
+  background-color: #EA3943;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
