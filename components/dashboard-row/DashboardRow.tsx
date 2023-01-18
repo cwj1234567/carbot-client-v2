@@ -1,4 +1,4 @@
-import { faDownLong, faUpLong } from "@fortawesome/free-solid-svg-icons";
+import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Table } from "flowbite-react";
 import Link from "next/link";
@@ -12,10 +12,10 @@ const formatter = new Intl.NumberFormat("en-US", {
   });
 
   const upArrow = (
-    <FontAwesomeIcon icon={faUpLong} style={{ color: "green" }} size="xs" />
+    <FontAwesomeIcon icon={faCaretUp} className="text-up-green" size="xs" />
   );
   const downArrow = (
-   <FontAwesomeIcon icon={faDownLong} style={{ color: "red" }} size="xs" />
+   <FontAwesomeIcon icon={faCaretDown} className="text-down-red" size="xs" />
   );
   
 
@@ -30,13 +30,13 @@ const formatter = new Intl.NumberFormat("en-US", {
           .toString()
           .replace(".00", "")}
       </Table.Cell>
-      <Table.Cell className={vehicle.pctChange90d >= 0 ? "text-green-500" : "text-red-500"}>
-        <div style={{ display: "flex", alignItems: "center" }}>
+      <Table.Cell className={vehicle.pctChange90d >= 0 ? "text-up-green" : "text-down-red"}>
+        <div className="flex items-center">
           {vehicle.pctChange90d >= 0 ? upArrow : downArrow}&nbsp;{Math.abs(vehicle.pctChange90d * 100).toFixed(1)}%
         </div>
       </Table.Cell>
-      <Table.Cell className={vehicle.pctChange365d >= 0 ? "text-green-500" : "text-red-500"}>
-        <div style={{ display: "flex", alignItems: "center" }}>
+      <Table.Cell className={vehicle.pctChange365d >= 0 ? "text-up-green" : "text-down-red"}>
+        <div className="flex items-center">
           {vehicle.pctChange365d >= 0 ? upArrow : downArrow}&nbsp;{Math.abs(vehicle.pctChange365d * 100).toFixed(1)}%
         </div>
       </Table.Cell>
