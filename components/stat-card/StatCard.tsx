@@ -1,39 +1,65 @@
+import {
+  faCaretDown,
+  faCaretUp,
+  faInfoCircle,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Tooltip } from "flowbite-react";
 import IStatCard from "./IStatCard";
 
-const StatCard: React.FC<IStatCard> = ({
-}) => (
+const upArrow = (
+  <FontAwesomeIcon
+    icon={faCaretUp}
+    style={{ color: "white" }}
+    size="sm"
+    className="ml-1 mr-1"
+  />
+);
+const downArrow = (
+  <FontAwesomeIcon
+    icon={faCaretDown}
+    style={{ color: "white" }}
+    size="sm"
+    className="mr-1"
+  />
+);
+
+const StatCard: React.FC<IStatCard> = ({}) => (
   <>
-  <article className="rounded-lg lg:border bg-white ml-2 mt-6 mb-6">
-  <div>
-    <p className="text-sm text-gray-500">Price</p>
+    <article className="rounded-lg lg:border bg-white ml-2 mt-6 mb-6">
+      <div>
+        <div className="flex items-center text-sm text-gray-500">
+          Price (90D)
+          <Tooltip
+            content={
+              <span>
+                The median price of all sales that have occurred in the past 90
+                days (RMD 90) 😉
+              </span>
+            }
+            animation="duration-500"
+          >
+            <FontAwesomeIcon
+              icon={faInfoCircle}
+              className="text-cool-gray-500 ml-1"
+            />
+          </Tooltip>
+        </div>
+        <div className="flex items-center">
+          <p className="text-2xl font-medium text-gray-900 ml-1">$26,500</p>
+          <span>
+            {" "}
+            <div className="focus:outline-none text-white bg-down-red font-xs rounded-lg text-xs px-2 py-1 mr-1 ml-2">
+              {downArrow} 67.81%
+            </div>
+          </span>
+        </div>
+      </div>
 
-    <p className="text-2xl font-medium text-gray-900">$26,500</p>
-  </div>
-
-  <div className="mt-1 flex gap-1 text-green-600">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="h-4 w-4"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
-      />
-    </svg>
-
-    <p className="flex gap-2 text-xs">
-      <span className="font-medium"> 67.81% </span>
-
-      <span className="text-gray-500"> Past 365 days </span>
-    </p>
-  </div>
-</article>
-
+      <div className="text-gray-400 ml-3 mt-0.5 font-thin text-xs">
+        Since 1/18/2022
+      </div>
+    </article>
   </>
 );
 
