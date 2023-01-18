@@ -67,8 +67,8 @@ export default function Home({
           <Table.Head className="text-xs">
             <Table.HeadCell>Vehicle</Table.HeadCell>
             <Table.HeadCell>
-              <div style={{ display: "flex", alignItems: "center" }}>
-                Price<small>*</small>&nbsp;
+              <div className="flex items-center">
+                Price (90D)&nbsp;
                 <Tooltip
                   content={
                     <span style={{ textTransform: "none" }}>
@@ -85,11 +85,11 @@ export default function Home({
                 </Tooltip>
               </div>
             </Table.HeadCell>
-            <Table.HeadCell>90d</Table.HeadCell>
-            <Table.HeadCell>365d</Table.HeadCell>
+            <Table.HeadCell>90D %</Table.HeadCell>
+            <Table.HeadCell>1y %</Table.HeadCell>
             <Table.HeadCell>
-              <div style={{ display: "flex", alignItems: "center" }}>
-                Volume&nbsp;
+              <div className="flex items-center">
+                Volume (90D)&nbsp;
                 <Tooltip
                   content={
                     <span style={{ textTransform: "none" }}>
