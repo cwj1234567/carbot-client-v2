@@ -67,11 +67,11 @@ export default function Home({
           <Table.Head className="text-xs">
             <Table.HeadCell>Vehicle</Table.HeadCell>
             <Table.HeadCell>
-              <div className="flex items-center">
+              <div className="flex items-center whitespace-nowrap">
                 Price (90D)&nbsp;
                 <Tooltip
                   content={
-                    <span style={{ textTransform: "none" }}>
+                    <span className="normal-case">
                       The median price of all sales that have occurred in the
                       past 90 days (RMD 90) 😉
                     </span>
@@ -88,11 +88,11 @@ export default function Home({
             <Table.HeadCell>90D %</Table.HeadCell>
             <Table.HeadCell>1y %</Table.HeadCell>
             <Table.HeadCell>
-              <div className="flex items-center">
-                Volume (90D)&nbsp;
+              <div className="flex items-center whitespace-nowrap">
+                <span>Volume (90D)&nbsp;</span>
                 <Tooltip
                   content={
-                    <span style={{ textTransform: "none" }}>
+                    <span className="normal-case">
                       The cumulative sum of all sales that have occurred in the last 90 days
                     </span>
                   }
