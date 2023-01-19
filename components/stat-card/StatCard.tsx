@@ -10,17 +10,15 @@ import IStatCard from "./IStatCard";
 const upArrow = (
   <FontAwesomeIcon
     icon={faCaretUp}
-    style={{ color: "white" }}
     size="sm"
-    className="ml-1 mr-1"
+    className="mr-1 text-white"
   />
 );
 const downArrow = (
   <FontAwesomeIcon
     icon={faCaretDown}
-    style={{ color: "white" }}
     size="sm"
-    className="mr-1"
+    className="mr-1 text-white"
   />
 );
 
@@ -50,7 +48,7 @@ const StatCard: React.FC<IStatCard> = ({}) => (
           <span>
             {" "}
             <div className="focus:outline-none text-white bg-down-red font-xs rounded-lg text-xs px-2 py-1 mr-1 ml-2">
-              {downArrow} 67.81%
+            <div className="flex items-center">{downArrow}&nbsp;67.81%</div>
             </div>
           </span>
         </div>
