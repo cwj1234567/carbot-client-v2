@@ -22,7 +22,7 @@ const formatter = new Intl.NumberFormat("en-US", {
   const DashboardRow: React.FC<IDashboardRow> = memo(({vehicle}) => (
     <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
       <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-      <Link href={`/vehicle/${vehicle.vehicleId}`} className="flex align-items-center"><img src={`https://icons.media.carbot.lol/${vehicle.vehicleMake}.svg`} alt="image" className="h-4 w-4 mr-2" />&nbsp;{`${vehicle.vehicleMake} ${vehicle.vehicleModel}`}</Link>
+      <Link href={`/vehicle/${vehicle.vehicleId}/${vehicle.vehicleMake} ${vehicle.vehicleModel}`} className="flex align-items-center"><img src={`https://icons.media.carbot.lol/${vehicle.vehicleMake}.svg`} alt="image" className="h-4 w-4 mr-2" />&nbsp;{`${vehicle.vehicleMake} ${vehicle.vehicleModel}`}</Link>
       </Table.Cell>
       <Table.Cell>
         {formatter

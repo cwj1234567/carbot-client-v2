@@ -1,11 +1,10 @@
 import axios from "axios";
 import IDashboardModel from "../../interfaces/IDashboardModel";
 
-import IVehicleModel from "../../interfaces/IVehicleModel";
 import IAuctionResponse from "../../interfaces/responses/IAuctionResponse";
 import IPriceReportModel from "../../interfaces/IPriceReportModel";
 
-const baseUrl = "https://api.carbot.lol";
+const baseUrl = "http://localhost:8181";
 
 class CarbotService {
   isLoading: boolean = false;
@@ -47,23 +46,7 @@ class CarbotService {
   async getMakes(): Promise<string[]> {
     try {
       this.isLoading = true;
-      const response = await axios.get<string[]>(`${baseUrl}/vehicle/make`);
-      this.isLoading = false;
-      return response.data;
-    } catch (error) {
-      console.error(error);
-      throw error;
-    } finally {
-      this.isLoading = false;
-    }
-  }
-
-  async getVehicle(vehicleId: string): Promise<IVehicleModel> {
-    try {
-      this.isLoading = true;
-      const response = await axios.get<IVehicleModel>(
-        `${baseUrl}/vehicle/${vehicleId}`
-      );
+      const response = await axios.get<string[]>(`${baseUrl}/make`);
       this.isLoading = false;
       return response.data;
     } catch (error) {
@@ -85,7 +68,7 @@ class CarbotService {
       if (page) params.set("page", page);
 
       const response = await axios.get<IAuctionResponse>(
-        `${baseUrl}/vehicle/${vehicleId}/auction?${params.toString()}`
+        `${baseUrl}/auction/${vehicleId}?${params.toString()}`
       );
       this.isLoading = false;
       return response.data;
@@ -103,7 +86,7 @@ class CarbotService {
     try {
       this.isLoading = true;
       const response = await axios.get<IPriceReportModel[]>(
-        `${baseUrl}/vehicle/${vehicleId}/report/3`
+        `${baseUrl}/report/3?vehicleId=${vehicleId}`
       );
       this.isLoading = false;
       return response.data;
