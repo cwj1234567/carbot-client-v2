@@ -4,7 +4,7 @@ import IDashboardModel from "../../interfaces/IDashboardModel";
 import IAuctionResponse from "../../interfaces/responses/IAuctionResponse";
 import IPriceReportModel from "../../interfaces/IPriceReportModel";
 
-const baseUrl = "http://localhost:8181";
+const baseUrl = "https://api.carbot.lol";
 
 class CarbotService {
   isLoading: boolean = false;
