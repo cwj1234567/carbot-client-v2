@@ -7,9 +7,7 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
 const CarbotLineChart = (props: ICarbotLineChart) => {
-  const [rollingMedian, setRollingMedian] = useState<
-    IPriceReportModel[] | undefined
-  >(undefined);
+ 
 
   const [chartColor, setChartColor] = useState<string>("#FF0000");
 
@@ -21,24 +19,18 @@ const CarbotLineChart = (props: ICarbotLineChart) => {
   });
 
   useEffect(() => {
-    if (props.vehicleId && rollingMedian === undefined) {
-      const fetchData = async () => {
-        let data = await carbotService.getRollingMedianReport(
-          props.vehicleId.toString()
-        );
-        setRollingMedian(data);
-        setChartColor(
-          data && data.length > 0 && data[0].price < data[data.length - 1].price
-            ? "#EA3943"
-            : "#16C784"
-        );
-      };
-      fetchData();
-    }
-  }, [props.vehicleId]);
+    setChartColor(
+      props.priceReport &&
+        props.priceReport.length > 0 &&
+        props.priceReport[0].price <
+          props.priceReport[props.priceReport.length - 1].price
+        ? "#EA3943"
+        : "#16C784"
+    );
+  }, []);
 
   // green #16C784
-    // red #EA3943
+  // red #EA3943
 
   let options: Highcharts.Options | undefined = undefined;
 
@@ -52,7 +44,7 @@ const CarbotLineChart = (props: ICarbotLineChart) => {
         {
           type: "area",
           name: "Price",
-          data: rollingMedian?.map((item) => [
+          data: props.priceReport?.map((item) => [
             Number(new Date(item.date)),
             item.price,
           ]),
@@ -145,7 +137,7 @@ const CarbotLineChart = (props: ICarbotLineChart) => {
 
   return (
     <div>
-      {rollingMedian && options && (
+      {props.priceReport && options && (
         <HighchartsReact highcharts={Highcharts} options={options} />
       )}
     </div>

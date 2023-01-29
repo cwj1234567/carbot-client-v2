@@ -1,6 +1,7 @@
+import IPriceReportModel from "../../interfaces/IPriceReportModel"
 
 interface ICarbotLineChart {
-    vehicleId: number
+    priceReport: IPriceReportModel[]
 }
 
 export default ICarbotLineChart

@@ -1,6 +1,9 @@
 
 interface IStatCard {
-    text: string;
+    title: string;
+    value: number;
+    subtitle: string;
+    percentage: number;
   
 }
 
