@@ -9,6 +9,8 @@ import IDashboardRow from "./IDashboardRow";
 const formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
   });
 
   const upArrow = (
@@ -42,8 +44,8 @@ const formatter = new Intl.NumberFormat("en-US", {
       </Table.Cell>
       <Table.Cell>{formatter
           .format(Math.round(vehicle.volume90d))
-          .toString()
-          .replace(".00", "")}</Table.Cell>
+          .toString()}
+      </Table.Cell>
     </Table.Row>
   ));
   
