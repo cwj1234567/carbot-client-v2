@@ -41,7 +41,7 @@ const StatCard: React.FC<IStatCard> = ({
           </Tooltip>
         </div>
         <div className="flex items-center">
-          <p className="text-2xl font-medium text-gray-900 ml-1">
+          <p className="text-2xl font-medium text-gray-900">
             {formatter.format(value)}
           </p>
 
