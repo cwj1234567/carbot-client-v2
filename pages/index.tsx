@@ -43,7 +43,7 @@ export default function Home({
   return (
     <>
         <div className="mt-1 mb-1 border-b border-[#E5E7EB] text-xs">
-          <div className="mt-3 mb-3  ml-3 mr-3 text-gray-600 ">
+          <div className="mt-3 mb-3 ml-3 mr-3 text-gray-600 ">
           <Dropdown label={selectedMake} color={"gray"} size="xs" inline={true}>
             {selectedMake !== "All Vehicles" && (
               <Dropdown.Item onClick={() => getDashboardByMake("All Vehicles")}>

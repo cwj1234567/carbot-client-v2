@@ -60,10 +60,10 @@ const VehiclePage: NextPage = () => {
       <nav className="flex border-b border-t border-[#E5E7EB] text-xs font-medium mt-2 text-gray-600">
         <a
           href=""
-          className={`-mb-px border-b ${
+          className={`-mb-px  ${
             activeTab === "price"
-              ? "border-current text-[#1A56DB]"
-              : "border-transparent"
+            ? "border-b-2 border-current font-black"
+            : "border-b border-transparent"
           } p-3 `}
           onClick={(e) => {
             e.preventDefault();
@@ -74,10 +74,10 @@ const VehiclePage: NextPage = () => {
         </a>
         <a
           href=""
-          className={`-mb-px border-b ${
+          className={`-mb-px  ${
             activeTab === "volume"
-              ? "border-current text-[#1A56DB]"
-              : "border-transparent"
+            ? "border-b-2 border-current font-black"
+            : "border-b border-transparent"
           } p-3 `}
           onClick={(e) => {
             e.preventDefault();
@@ -88,10 +88,10 @@ const VehiclePage: NextPage = () => {
         </a>
         <a
           href=""
-          className={`-mb-px border-b ${
+          className={`-mb-px  ${
             activeTab === "insights"
-              ? "border-current text-[#1A56DB]"
-              : "border-transparent"
+            ? "border-b-2 border-current font-black"
+            : "border-b border-transparent"
           } p-3 `}
           onClick={(e) => {
             e.preventDefault();
@@ -102,10 +102,10 @@ const VehiclePage: NextPage = () => {
         </a>
         <a
           href=""
-          className={`-mb-px border-b ${
+          className={`-mb-px  ${
             activeTab === "data"
-              ? "border-current text-[#1A56DB]"
-              : "border-transparent"
+              ? "border-b-2 border-current font-black"
+              : "border-b border-transparent"
           } p-3 `}
           onClick={(e) => {
             e.preventDefault();
@@ -117,14 +117,14 @@ const VehiclePage: NextPage = () => {
       </nav>
 
       {activeTab === "price" ? (
-        <div className="flex flex-col mb-6 overflow-x-auto">
+        <div className="flex flex-col mb-6 overflow-x-auto p-5">
           <div className="items-center justify-items-center ml-3 mr-3 overflow-x-auto">
             <div className="grid grid-cols-2 lg:grid-cols-5 gap-2">
               <div className="row-span-1">
                 {currentPrice && percentChange && statDate && (
                   <>
                     <StatCard
-                      title="Price (RMD 90)"
+                      title="Median Price"
                       value={currentPrice}
                       subtitle={`Since ${parseDate(statDate)}`}
                       percentage={percentChange}
