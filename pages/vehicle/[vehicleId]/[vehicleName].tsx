@@ -69,35 +69,7 @@ const VehiclePage: NextPage = () => {
             setActiveTab("price");
           }}
         >
-          Price
-        </a>
-        <a
-          href=""
-          className={`-mb-px  ${
-            activeTab === "volume"
-              ? "border-b-2 border-current font-black"
-              : "border-b border-transparent"
-          } p-3 `}
-          onClick={(e) => {
-            e.preventDefault();
-            setActiveTab("volume");
-          }}
-        >
-          Volume
-        </a>
-        <a
-          href=""
-          className={`-mb-px  ${
-            activeTab === "insights"
-              ? "border-b-2 border-current font-black"
-              : "border-b border-transparent"
-          } p-3 `}
-          onClick={(e) => {
-            e.preventDefault();
-            setActiveTab("insights");
-          }}
-        >
-          Insights
+          Overview
         </a>
         <a
           href=""
@@ -111,7 +83,7 @@ const VehiclePage: NextPage = () => {
             setActiveTab("data");
           }}
         >
-          Data
+          Transactions
         </a>
       </nav>
 
@@ -127,7 +99,7 @@ const VehiclePage: NextPage = () => {
           </div>
           <div className="flex flex-col md:flex-row w-full p-4">
             <div className="md:basis-96">
-              <div className="flex items-center text-sm text-gray-500 mt-4">
+              <div className="flex items-center text-sm text-gray-500">
                 90-Day Stats
               </div>
               <div className="p-4 md:mt-4 w-full flex flex-col">
@@ -165,7 +137,7 @@ const VehiclePage: NextPage = () => {
                   {currentPrice && percentChange && statDate && (
                     <>
                       <StatCard
-                        title="Vehicles Sold"
+                        title="Transactions"
                         value={21}
                         subtitle={``}
                         cash={false}
@@ -177,7 +149,7 @@ const VehiclePage: NextPage = () => {
               </div>
             </div>
             <div className="basis-full">
-              <div className="flex items-center text-sm text-gray-500 mt-4">
+              <div className="flex items-center text-sm text-gray-500">
                 Price History
               </div>
               <div className="mt-4 flex flex-col">
