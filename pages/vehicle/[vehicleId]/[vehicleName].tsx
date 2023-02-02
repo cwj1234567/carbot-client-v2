@@ -125,7 +125,7 @@ const VehiclePage: NextPage = () => {
             />
             Porsche 996
           </div>
-          <div className="flex flex-row w-full gap-2">
+          <div className="flex flex-col md:flex-row w-full gap-2">
             <div className="basis-1/5">
               <div className="flex items-center text-sm text-gray-500 mt-4 ml-1">
                 90-Day Stats
