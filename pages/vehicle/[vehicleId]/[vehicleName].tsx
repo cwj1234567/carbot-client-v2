@@ -7,7 +7,6 @@ import HyperButtonGroup from "../../../components/hyper-button-group/HyperButton
 import HyperButton from "../../../components/hyper-button/HyperButton";
 import StatCard from "../../../components/stat-card/StatCard";
 import IPriceReportModel from "../../../interfaces/IPriceReportModel";
-import parseDate from "../../../utils/ParseDate";
 import AuctionTable from "../../../widgets/auction-table/AuctionTable";
 import CarbotLineChart from "../../../widgets/carbot-line-chart/CarbotLineChart";
 import { carbotService } from "../../api/ServiceInitializer";
@@ -62,8 +61,8 @@ const VehiclePage: NextPage = () => {
           href=""
           className={`-mb-px  ${
             activeTab === "price"
-            ? "border-b-2 border-current font-black"
-            : "border-b border-transparent"
+              ? "border-b-2 border-current font-black"
+              : "border-b border-transparent"
           } p-3 `}
           onClick={(e) => {
             e.preventDefault();
@@ -76,8 +75,8 @@ const VehiclePage: NextPage = () => {
           href=""
           className={`-mb-px  ${
             activeTab === "volume"
-            ? "border-b-2 border-current font-black"
-            : "border-b border-transparent"
+              ? "border-b-2 border-current font-black"
+              : "border-b border-transparent"
           } p-3 `}
           onClick={(e) => {
             e.preventDefault();
@@ -90,8 +89,8 @@ const VehiclePage: NextPage = () => {
           href=""
           className={`-mb-px  ${
             activeTab === "insights"
-            ? "border-b-2 border-current font-black"
-            : "border-b border-transparent"
+              ? "border-b-2 border-current font-black"
+              : "border-b border-transparent"
           } p-3 `}
           onClick={(e) => {
             e.preventDefault();
@@ -109,7 +108,7 @@ const VehiclePage: NextPage = () => {
           } p-3 `}
           onClick={(e) => {
             e.preventDefault();
-            setActiveTab("data");
+            setActiveTab("data"); 
           }}
         >
           Data
@@ -117,54 +116,90 @@ const VehiclePage: NextPage = () => {
       </nav>
 
       {activeTab === "price" ? (
-        <div className="flex flex-col mb-6 overflow-x-auto p-5">
-          <div className="items-center justify-items-center ml-3 mr-3 overflow-x-auto">
-            <div className="grid grid-cols-2 lg:grid-cols-5 gap-2">
-              <div className="row-span-1">
-                {currentPrice && percentChange && statDate && (
-                  <>
-                    <StatCard
-                      title="Median Price"
-                      value={currentPrice}
-                      subtitle={`Since ${parseDate(statDate)}`}
-                      percentage={percentChange}
-                    />
-                  </>
-                )}
+        <>
+        <div className="text-2xl font-medium text-gray-900 mt-4 mb-2 flex items-center"><img src="https://icons.media.carbot.lol/Porsche.svg" alt="image" className="h-8 w-8 mr-2" />Porsche 996</div>
+          <div className="flex flex-row w-full">
+            <div className="basis-1/5">
+              <div className="flex items-center text-sm text-gray-500 mt-4">
+                90-Day Stats
               </div>
-              <div className="row-span-1">{/* <StatCard text="asdf" /> */}</div>
+              <div className="rounded-lg p-4 border mt-4 items-center w-max flex flex-col">
+                <div className="p-4 border-b">
+                  {currentPrice && percentChange && statDate && (
+                    <>
+                      <StatCard
+                        title="Median Price"
+                        value={currentPrice}
+                        subtitle={``}
+                        percentage={percentChange}
+                      />
+                    </>
+                  )}
+                </div>
+                <div className="p-4 border-b">
+                  {currentPrice && percentChange && statDate && (
+                    <>
+                      <StatCard
+                        title="Sales Volume"
+                        value={currentPrice}
+                        subtitle={``}
+                        percentage={percentChange}
+                      />
+                    </>
+                  )}
+                </div>
+                <div className="p-4">
+                  {currentPrice && percentChange && statDate && (
+                    <>
+                      <StatCard
+                        title="Vehicles Sold"
+                        value={currentPrice}
+                        subtitle={``}
+                        percentage={percentChange}
+                      />
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+            <div className="basis-4/5 ml-2">
+              <div className="flex items-center text-sm text-gray-500 mt-4">
+                Price History
+              </div>
+              <div className="rounded-lg p-4 border mt-4 flex flex-col">
+                <div className="items-center text-center col-span-4 overflow-x-auto mt-6">
+                  {rollingMedian && (
+                    <>
+                      <CarbotLineChart priceReport={rollingMedian} />
+                    </>
+                  )}
+                </div>
+              </div>
+              <div className="mt-4 mb-3 grid place-items-center">
+                <HyperButtonGroup>
+                  <HyperButton
+                    text="90d"
+                    onClick={function (): void {
+                      console.log("Function not implemented.");
+                    }}
+                  />
+                  <HyperButton
+                    text="1y"
+                    onClick={function (): void {
+                      console.log("Function not implemented.");
+                    }}
+                  />
+                  <HyperButton
+                    text="3y"
+                    onClick={function (): void {
+                      console.log("Function not implemented.");
+                    }}
+                  />
+                </HyperButtonGroup>
+              </div>
             </div>
           </div>
-          <div className="h-full items-center text-center col-span-4 overflow-x-auto ml-2 mr-2">
-            {rollingMedian && (
-              <>
-                <CarbotLineChart priceReport={rollingMedian} />
-                <div className="mt-2 mb-3">
-                  <HyperButtonGroup>
-                    <HyperButton
-                      text="90d"
-                      onClick={function (): void {
-                        console.log("Function not implemented.");
-                      }}
-                    />
-                    <HyperButton
-                      text="1y"
-                      onClick={function (): void {
-                        console.log("Function not implemented.");
-                      }}
-                    />
-                    <HyperButton
-                      text="3y"
-                      onClick={function (): void {
-                        console.log("Function not implemented.");
-                      }}
-                    />
-                  </HyperButtonGroup>
-                </div>
-              </>
-            )}
-          </div>
-        </div>
+        </>
       ) : (
         <>
           <div>

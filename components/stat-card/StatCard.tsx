@@ -21,24 +21,10 @@ const StatCard: React.FC<IStatCard> = ({
   percentage,
 }) => (
   <>
-    <article className="rounded-lg lg:border bg-white ml-2 mt-6 mb-6">
+    <article className="rounded-lg lg:border bg-white">
       <div>
         <div className="flex items-center text-sm text-gray-500">
           {title}
-          <Tooltip
-            content={
-              <span>
-                The median price of all sales that have occurred in the past 90
-                days (RMD 90) 😉
-              </span>
-            }
-            animation="duration-500"
-          >
-            <FontAwesomeIcon
-              icon={faInfoCircle}
-              className="text-cool-gray-500 ml-1"
-            />
-          </Tooltip>
         </div>
         <div className="flex items-center">
           <p className="text-2xl font-medium text-gray-900">
