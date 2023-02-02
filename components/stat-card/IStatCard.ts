@@ -4,6 +4,7 @@ interface IStatCard {
     value: number;
     subtitle: string;
     percentage: number;
+    cash: boolean;
   
 }
 

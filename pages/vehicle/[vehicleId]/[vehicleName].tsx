@@ -108,7 +108,7 @@ const VehiclePage: NextPage = () => {
           } p-3 `}
           onClick={(e) => {
             e.preventDefault();
-            setActiveTab("data"); 
+            setActiveTab("data");
           }}
         >
           Data
@@ -117,44 +117,58 @@ const VehiclePage: NextPage = () => {
 
       {activeTab === "price" ? (
         <>
-        <div className="text-2xl font-medium text-gray-900 mt-4 mb-2 flex items-center"><img src="https://icons.media.carbot.lol/Porsche.svg" alt="image" className="h-8 w-8 mr-2" />Porsche 996</div>
-          <div className="flex flex-row w-full">
+          <div className="text-2xl font-medium text-gray-900 mt-6 mb-2 flex items-center">
+            <img
+              src="https://icons.media.carbot.lol/Porsche.svg"
+              alt="image"
+              className="h-8 w-8 mr-2"
+            />
+            Porsche 996
+          </div>
+          <div className="flex flex-row w-full gap-2">
             <div className="basis-1/5">
-              <div className="flex items-center text-sm text-gray-500 mt-4">
+              <div className="flex items-center text-sm text-gray-500 mt-4 ml-1">
                 90-Day Stats
               </div>
-              <div className="rounded-lg p-4 border mt-4 items-center w-max flex flex-col">
-                <div className="p-4 border-b">
-                  {currentPrice && percentChange && statDate && (
-                    <>
-                      <StatCard
-                        title="Median Price"
-                        value={currentPrice}
-                        subtitle={``}
-                        percentage={percentChange}
-                      />
-                    </>
-                  )}
+              <div className="rounded-lg p-4 border mt-4 w-full flex flex-col">
+                <div className="border-b">
+                  <div className="mb-4">
+                    {currentPrice && percentChange && statDate && (
+                      <>
+                        <StatCard
+                          title="Median Price"
+                          value={currentPrice}
+                          subtitle={``}
+                          cash={true}
+                          percentage={percentChange}
+                        />
+                      </>
+                    )}
+                  </div>
                 </div>
-                <div className="p-4 border-b">
-                  {currentPrice && percentChange && statDate && (
-                    <>
-                      <StatCard
-                        title="Sales Volume"
-                        value={currentPrice}
-                        subtitle={``}
-                        percentage={percentChange}
-                      />
-                    </>
-                  )}
+                <div className="border-b">
+                  <div className="mb-4 mt-4">
+                    {currentPrice && percentChange && statDate && (
+                      <>
+                        <StatCard
+                          title="Sales Volume"
+                          value={2604920}
+                          subtitle={``}
+                          cash={true}
+                          percentage={percentChange}
+                        />
+                      </>
+                    )}
+                  </div>
                 </div>
-                <div className="p-4">
+                <div className="mt-4">
                   {currentPrice && percentChange && statDate && (
                     <>
                       <StatCard
                         title="Vehicles Sold"
-                        value={currentPrice}
+                        value={21}
                         subtitle={``}
+                        cash={false}
                         percentage={percentChange}
                       />
                     </>
@@ -163,7 +177,7 @@ const VehiclePage: NextPage = () => {
               </div>
             </div>
             <div className="basis-4/5 ml-2">
-              <div className="flex items-center text-sm text-gray-500 mt-4">
+              <div className="flex items-center text-sm text-gray-500 mt-4 ml-1">
                 Price History
               </div>
               <div className="rounded-lg p-4 border mt-4 flex flex-col">

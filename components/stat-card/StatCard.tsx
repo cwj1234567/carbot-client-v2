@@ -4,7 +4,6 @@ import {
   faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Tooltip } from "flowbite-react";
 import IStatCard from "./IStatCard";
 
 const upArrow = (
@@ -19,16 +18,18 @@ const StatCard: React.FC<IStatCard> = ({
   value,
   subtitle,
   percentage,
+  cash,
 }) => (
   <>
-    <article className="rounded-lg lg:border bg-white">
+    <article className=" bg-white">
       <div>
         <div className="flex items-center text-sm text-gray-500">
           {title}
         </div>
         <div className="flex items-center">
-          <p className="text-2xl font-medium text-gray-900">
-            {formatter.format(value)}
+          <p className="text-xl font-medium text-gray-900">
+            {cash && formatter.format(value)}
+            {!cash && value}
           </p>
 
           <span>
