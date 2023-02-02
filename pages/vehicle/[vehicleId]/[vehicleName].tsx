@@ -125,12 +125,12 @@ const VehiclePage: NextPage = () => {
             />
             Porsche 996
           </div>
-          <div className="flex flex-col md:flex-row w-full gap-2">
-            <div className="basis-1/5 ml-2">
+          <div className="flex flex-col md:flex-row w-full p-4">
+            <div className="md:basis-96">
               <div className="flex items-center text-sm text-gray-500 mt-4">
                 90-Day Stats
               </div>
-              <div className="rounded-lg p-4 md:border md:mt-4 w-full flex flex-col">
+              <div className="p-4 md:mt-4 w-full flex flex-col">
                 <div className="border-b">
                   <div className="mb-4">
                     {currentPrice && percentChange && statDate && (
@@ -176,11 +176,11 @@ const VehiclePage: NextPage = () => {
                 </div>
               </div>
             </div>
-            <div className="basis-4/5 ml-2">
-              <div className="flex items-center text-sm text-gray-500 mt-4 ml-1">
+            <div className="basis-full">
+              <div className="flex items-center text-sm text-gray-500 mt-4">
                 Price History
               </div>
-              <div className="rounded-lg p-4 md:border md:mt-4 flex flex-col">
+              <div className="mt-4 flex flex-col">
                 <div className="items-center text-center col-span-4 overflow-x-auto md:mt-6">
                   {rollingMedian && (
                     <>

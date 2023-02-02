@@ -7,10 +7,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import IStatCard from "./IStatCard";
 
 const upArrow = (
-  <FontAwesomeIcon icon={faCaretUp} size="sm" className="mr-1 text-white" />
+  <FontAwesomeIcon icon={faCaretUp} size="sm" className="mr-1 text-up-green" />
 );
 const downArrow = (
-  <FontAwesomeIcon icon={faCaretDown} size="sm" className="mr-1 text-white" />
+  <FontAwesomeIcon icon={faCaretDown} size="sm" className="mr-1 text-down-red" />
 );
 
 const StatCard: React.FC<IStatCard> = ({
@@ -35,8 +35,8 @@ const StatCard: React.FC<IStatCard> = ({
           <span>
             {" "}
             <div
-              className={`focus:outline-none text-white font-xs rounded-lg text-xs px-2 py-1 mr-1 ml-2 ${
-                percentage > 0 ? "bg-up-green" : "bg-down-red"
+              className={`focus:outline-none text-red font-xs rounded-lg text-xs ml-2 mt-2 ${
+                percentage > 0 ? "text-up-green" : "text-down-red"
               }`}
             >
               <div className="flex items-center">
