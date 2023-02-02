@@ -117,7 +117,7 @@ const VehiclePage: NextPage = () => {
 
       {activeTab === "price" ? (
         <>
-          <div className="text-2xl font-medium text-gray-900 mt-6 mb-2 flex items-center">
+          <div className="text-2xl font-medium text-gray-900 mt-6 mb-2 ml-2 flex items-center">
             <img
               src="https://icons.media.carbot.lol/Porsche.svg"
               alt="image"
@@ -126,11 +126,11 @@ const VehiclePage: NextPage = () => {
             Porsche 996
           </div>
           <div className="flex flex-col md:flex-row w-full gap-2">
-            <div className="basis-1/5">
-              <div className="flex items-center text-sm text-gray-500 mt-4 ml-1">
+            <div className="basis-1/5 ml-2">
+              <div className="flex items-center text-sm text-gray-500 mt-4">
                 90-Day Stats
               </div>
-              <div className="rounded-lg p-4 border mt-4 w-full flex flex-col">
+              <div className="rounded-lg p-4 md:border md:mt-4 w-full flex flex-col">
                 <div className="border-b">
                   <div className="mb-4">
                     {currentPrice && percentChange && statDate && (
@@ -161,7 +161,7 @@ const VehiclePage: NextPage = () => {
                     )}
                   </div>
                 </div>
-                <div className="mt-4">
+                <div className="mt-4 mb-1">
                   {currentPrice && percentChange && statDate && (
                     <>
                       <StatCard
@@ -180,8 +180,8 @@ const VehiclePage: NextPage = () => {
               <div className="flex items-center text-sm text-gray-500 mt-4 ml-1">
                 Price History
               </div>
-              <div className="rounded-lg p-4 border mt-4 flex flex-col">
-                <div className="items-center text-center col-span-4 overflow-x-auto mt-6">
+              <div className="rounded-lg p-4 md:border md:mt-4 flex flex-col">
+                <div className="items-center text-center col-span-4 overflow-x-auto md:mt-6">
                   {rollingMedian && (
                     <>
                       <CarbotLineChart priceReport={rollingMedian} />
