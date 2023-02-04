@@ -3,6 +3,7 @@ import IDashboardModel from "../../interfaces/IDashboardModel";
 
 import IAuctionResponse from "../../interfaces/responses/IAuctionResponse";
 import IPriceReportModel from "../../interfaces/IPriceReportModel";
+import IStatModel from "../../interfaces/IStatModel";
 
 const baseUrl = "https://api.carbot.lol";
 
@@ -87,6 +88,25 @@ class CarbotService {
       this.isLoading = true;
       const response = await axios.get<IPriceReportModel[]>(
         `${baseUrl}/report/3?vehicleId=${vehicleId}`
+      );
+      this.isLoading = false;
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    } finally {
+      this.isLoading = false;
+    }
+  }
+
+  async getStat(
+    vehicleId: string,
+    statId: string
+  ): Promise<IStatModel> {
+    try {
+      this.isLoading = true;
+      const response = await axios.get<IStatModel>(
+        `${baseUrl}/stat/${statId}?vehicleId=${vehicleId}`
       );
       this.isLoading = false;
       return response.data;

@@ -36,11 +36,11 @@ const StatCard: React.FC<IStatCard> = ({
             {" "}
             <div
               className={`focus:outline-none text-red font-xs rounded-lg text-xs ml-2 mt-2 ${
-                percentage > 0 ? "text-up-green" : "text-down-red"
+                percentage < 0 ? "text-down-red" : "text-up-green"
               }`}
             >
               <div className="flex items-center">
-                {percentage > 0 ? upArrow : downArrow}&nbsp;
+                {percentage < 0 ? downArrow : upArrow }&nbsp;
                 {Math.abs(percentage).toFixed(1)}%
               </div>
             </div>

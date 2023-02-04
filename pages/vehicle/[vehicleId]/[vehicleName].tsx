@@ -7,6 +7,7 @@ import HyperButtonGroup from "../../../components/hyper-button-group/HyperButton
 import HyperButton from "../../../components/hyper-button/HyperButton";
 import StatCard from "../../../components/stat-card/StatCard";
 import IPriceReportModel from "../../../interfaces/IPriceReportModel";
+import IStatModel from "../../../interfaces/IStatModel";
 import AuctionTable from "../../../widgets/auction-table/AuctionTable";
 import CarbotLineChart from "../../../widgets/carbot-line-chart/CarbotLineChart";
 import { carbotService } from "../../api/ServiceInitializer";
@@ -28,6 +29,16 @@ const VehiclePage: NextPage = () => {
     undefined
   );
 
+  const [priceStat, setPriceStat] = useState<IStatModel | undefined>(undefined);
+  const [transactionStat, setTransactionStat] = useState<
+    IStatModel | undefined
+  >(undefined);
+  const [volumeStat, setVolumeStat] = useState<IStatModel | undefined>(
+    undefined
+  );
+
+  const [vehicleMake, setVehicleMake] = useState<string | undefined>(undefined);
+
   useEffect(() => {
     if (vehicleId) {
       const fetchRollingMedian = async () => {
@@ -44,8 +55,36 @@ const VehiclePage: NextPage = () => {
         setStatDate(data[data.length - 1].date.toString());
       };
       fetchRollingMedian();
+
+      const fetchPriceStat = async () => {
+        let priceStat = await carbotService.getStat(vehicleId.toString(), "1");
+        setPriceStat(priceStat);
+      };
+      fetchPriceStat();
+
+      const fetchVolumeStat = async () => {
+        let volumeStat = await carbotService.getStat(vehicleId.toString(), "2");
+        setVolumeStat(volumeStat);
+      };
+      fetchVolumeStat();
+
+      const fetchTransactionStat = async () => {
+        let transactionStat = await carbotService.getStat(
+          vehicleId.toString(),
+          "3"
+        );
+        setTransactionStat(transactionStat);
+      };
+      fetchTransactionStat();
     }
   }, [vehicleId]);
+
+  useEffect(() => {
+    if (typeof vehicleName === "string") {
+      const arr = (vehicleName as string).split(" ");
+      setVehicleMake(arr[0]);
+    }
+  }, [vehicleName]);
 
   return (
     <>
@@ -90,12 +129,14 @@ const VehiclePage: NextPage = () => {
       {activeTab === "price" ? (
         <>
           <div className="text-2xl font-medium text-gray-900 mt-6 mb-2 ml-2 flex items-center">
-            <img
-              src="https://icons.media.carbot.lol/Porsche.svg"
-              alt="image"
-              className="h-8 w-8 mr-2"
-            />
-            Porsche 996
+            {vehicleMake && (
+              <img
+                src={`https://icons.media.carbot.lol/${vehicleMake}.svg`}
+                alt="image"
+                className="h-8 w-8 mr-2"
+              />
+            )}
+            {`${vehicleName}`}
           </div>
           <div className="flex flex-col md:flex-row w-full p-4">
             <div className="md:basis-96">
@@ -105,14 +146,14 @@ const VehiclePage: NextPage = () => {
               <div className="p-4 md:mt-4 w-full flex flex-col">
                 <div className="border-b">
                   <div className="mb-4">
-                    {currentPrice && percentChange && statDate && (
+                    {priceStat && (
                       <>
                         <StatCard
                           title="Median Price"
-                          value={currentPrice}
+                          value={priceStat.value}
                           subtitle={``}
                           cash={true}
-                          percentage={percentChange}
+                          percentage={priceStat.percentage}
                         />
                       </>
                     )}
@@ -120,28 +161,28 @@ const VehiclePage: NextPage = () => {
                 </div>
                 <div className="border-b">
                   <div className="mb-4 mt-4">
-                    {currentPrice && percentChange && statDate && (
+                    {volumeStat && (
                       <>
                         <StatCard
                           title="Sales Volume"
-                          value={2604920}
+                          value={volumeStat.value}
                           subtitle={``}
                           cash={true}
-                          percentage={percentChange}
+                          percentage={volumeStat.percentage}
                         />
                       </>
                     )}
                   </div>
                 </div>
                 <div className="mt-4 mb-1">
-                  {currentPrice && percentChange && statDate && (
+                  {transactionStat && (
                     <>
                       <StatCard
                         title="Transactions"
-                        value={21}
+                        value={transactionStat.value}
                         subtitle={``}
                         cash={false}
-                        percentage={percentChange}
+                        percentage={transactionStat.percentage}
                       />
                     </>
                   )}
