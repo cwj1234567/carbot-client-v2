@@ -17,10 +17,7 @@ const VehiclePage: NextPage = () => {
   const { vehicleId, vehicleName } = router.query;
 
   const [activeTab, setActiveTab] = useState<string>("price");
-  const [rollingMedian, setRollingMedian] = useState<
-    IPriceReportModel[] | undefined
-  >(undefined);
-
+ 
   const [priceStat, setPriceStat] = useState<IStatModel | undefined>(undefined);
   const [transactionStat, setTransactionStat] = useState<
     IStatModel | undefined
@@ -34,6 +31,10 @@ const VehiclePage: NextPage = () => {
   const [selectedReport, setSelectedReport] = useState<string | undefined>(
     "90d"
   );
+
+  const [s90dReport, sets90dReport] = useState<IPriceReportModel[] | undefined>(undefined);
+  const [s1yrReport, sets1yrReport] = useState<IPriceReportModel[] | undefined>(undefined);
+  const [s3yrReport, sets3yrReport] = useState<IPriceReportModel[] | undefined>(undefined);
 
   useEffect(() => {
     if (vehicleId) {
@@ -68,45 +69,41 @@ const VehiclePage: NextPage = () => {
     }
   }, [vehicleName]);
 
-  useEffect(() => {
-    if (
-      selectedReport === "90d" ||
-      selectedReport === "1yr" ||
-      selectedReport === "3yr"
-    ) {
-      const fetchRollingMedian = async () => {
-        let data;
-        if (selectedReport === "90d" && vehicleId) {
-          data = await carbotService.get90DayPriceReport(vehicleId.toString());
-        } else if (selectedReport === "1yr" && vehicleId) {
-          data = await carbotService.get1yrPriceReport(vehicleId.toString());
-        } else if (selectedReport === "3yr" && vehicleId) {
-          data = await carbotService.get3yrPriceReport(vehicleId.toString());
-        }
-
-        setRollingMedian(data);
-      };
-
-      if (selectedReport && vehicleId) {
-        fetchRollingMedian();
-      }
-    }
-  }, [selectedReport, vehicleId]);
-
   interface ReportProps {
-    priceReport: any;
+    vehicleId: any;
   }
 
-  function Report90d({ priceReport }: ReportProps) {
-    return <CarbotLineChart priceReport={priceReport}/>;
+  function Report90d({ vehicleId }: ReportProps) {
+    if(s90dReport)
+      return <CarbotLineChart priceReport={s90dReport}/>;
+
+    const fetchReport = async () => {
+      sets90dReport(await carbotService.get90DayPriceReport(vehicleId.toString()));
+    }
+    fetchReport();
+    return <></>;
   }
 
-  function Report1yr({ priceReport }: ReportProps) {
-    return <CarbotLineChart priceReport={priceReport}/>;
+  function Report1Yr({ vehicleId }: ReportProps) {
+    if(s1yrReport)
+      return <CarbotLineChart priceReport={s1yrReport}/>;
+
+    const fetchReport = async () => {
+      sets1yrReport(await carbotService.get1yrPriceReport(vehicleId.toString()));
+    }
+    fetchReport();
+    return <></>;
   }
 
-  function Report3yr({ priceReport }: ReportProps) {
-    return <CarbotLineChart priceReport={priceReport}/>;
+  function Report3Yr({ vehicleId }: ReportProps) {
+    if(s3yrReport)
+      return <CarbotLineChart priceReport={s3yrReport}/>;
+
+    const fetchReport = async () => {
+      sets3yrReport(await carbotService.get3yrPriceReport(vehicleId.toString()));
+    }
+    fetchReport();
+    return <></>;
   }
 
   return (
@@ -218,16 +215,16 @@ const VehiclePage: NextPage = () => {
               </div>
               <div className="mt-4 flex flex-col">
                 <div className="items-center text-center col-span-4 overflow-x-auto md:mt-6">
-                  {rollingMedian && (
+                  {vehicleId && (
                     <>
                       {selectedReport === "90d" && (
-                        <Report90d priceReport={rollingMedian} />
+                        <Report90d vehicleId={vehicleId} />
                       )}
                       {selectedReport === "1yr" && (
-                        <Report1yr priceReport={rollingMedian} />
+                        <Report1Yr vehicleId={vehicleId} />
                       )}
                       {selectedReport === "3yr" && (
-                        <Report3yr priceReport={rollingMedian} />
+                        <Report3Yr vehicleId={vehicleId} />
                       )}
                     </>
                   )}
