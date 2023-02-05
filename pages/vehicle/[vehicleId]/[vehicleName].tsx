@@ -37,7 +37,6 @@ const VehiclePage: NextPage = () => {
 
   useEffect(() => {
     if (vehicleId) {
-      setSelectedReport("90d");
 
       const fetchPriceStat = async () => {
         let priceStat = await carbotService.getStat(vehicleId.toString(), "1");
@@ -99,15 +98,15 @@ const VehiclePage: NextPage = () => {
   }
 
   function Report90d({ priceReport }: ReportProps) {
-    return <CarbotLineChart priceReport={priceReport} key={"90d-report"} />;
+    return <CarbotLineChart priceReport={priceReport}/>;
   }
 
   function Report1yr({ priceReport }: ReportProps) {
-    return <CarbotLineChart priceReport={priceReport} key={"1yr-report"} />;
+    return <CarbotLineChart priceReport={priceReport}/>;
   }
 
   function Report3yr({ priceReport }: ReportProps) {
-    return <CarbotLineChart priceReport={priceReport} key={"3yr-report"} />;
+    return <CarbotLineChart priceReport={priceReport}/>;
   }
 
   return (
