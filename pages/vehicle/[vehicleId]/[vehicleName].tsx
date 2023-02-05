@@ -29,15 +29,26 @@ const VehiclePage: NextPage = () => {
   const [vehicleMake, setVehicleMake] = useState<string | undefined>(undefined);
 
   const [selectedReport, setSelectedReport] = useState<string | undefined>(
-    "90d"
+  
   );
 
   const [s90dReport, sets90dReport] = useState<IPriceReportModel[] | undefined>(undefined);
   const [s1yrReport, sets1yrReport] = useState<IPriceReportModel[] | undefined>(undefined);
   const [s3yrReport, sets3yrReport] = useState<IPriceReportModel[] | undefined>(undefined);
 
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  
+
   useEffect(() => {
     if (vehicleId) {
+
+      const fetchReport = async () => {
+        setIsLoading(true);
+        sets90dReport(await carbotService.get90DayPriceReport(vehicleId.toString()));
+        setIsLoading(false);
+      };
+    
+      fetchReport();
 
       const fetchPriceStat = async () => {
         let priceStat = await carbotService.getStat(vehicleId.toString(), "1");
@@ -74,14 +85,16 @@ const VehiclePage: NextPage = () => {
   }
 
   function Report90d({ vehicleId }: ReportProps) {
-    if(s90dReport)
-      return <CarbotLineChart priceReport={s90dReport}/>;
 
-    const fetchReport = async () => {
-      sets90dReport(await carbotService.get90DayPriceReport(vehicleId.toString()));
-    }
-    fetchReport();
+    if (s90dReport) return <CarbotLineChart priceReport={s90dReport} />;
+    if (isLoading) return <></>;
+  
     return <></>;
+  }
+  
+  if(selectedReport===undefined)
+  {
+    setSelectedReport("90d");
   }
 
   function Report1Yr({ vehicleId }: ReportProps) {
