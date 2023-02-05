@@ -32,7 +32,7 @@ const VehiclePage: NextPage = () => {
   const [vehicleMake, setVehicleMake] = useState<string | undefined>(undefined);
 
   const [selectedReport, setSelectedReport] = useState<string | undefined>(
-    undefined
+    "90d"
   );
 
   useEffect(() => {
