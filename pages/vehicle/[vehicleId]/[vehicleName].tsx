@@ -20,14 +20,6 @@ const VehiclePage: NextPage = () => {
   const [rollingMedian, setRollingMedian] = useState<
     IPriceReportModel[] | undefined
   >(undefined);
-  const [statDate, setStatDate] = useState<string | undefined>(undefined);
-
-  const [currentPrice, setCurrentPrice] = useState<number | undefined>(
-    undefined
-  );
-  const [percentChange, setPercentChange] = useState<number | undefined>(
-    undefined
-  );
 
   const [priceStat, setPriceStat] = useState<IStatModel | undefined>(undefined);
   const [transactionStat, setTransactionStat] = useState<
@@ -39,22 +31,13 @@ const VehiclePage: NextPage = () => {
 
   const [vehicleMake, setVehicleMake] = useState<string | undefined>(undefined);
 
+  const [selectedReport, setSelectedReport] = useState<string | undefined>(
+    undefined
+  );
+
   useEffect(() => {
     if (vehicleId) {
-      const fetchRollingMedian = async () => {
-        let data = await carbotService.getRollingMedianReport(
-          vehicleId.toString()
-        );
-        setRollingMedian(data);
-        setCurrentPrice(data[0].price);
-        setPercentChange(
-          ((data[0].price - data[data.length - 1].price) /
-            data[data.length - 1].price) *
-            100
-        );
-        setStatDate(data[data.length - 1].date.toString());
-      };
-      fetchRollingMedian();
+      setSelectedReport("90d");
 
       const fetchPriceStat = async () => {
         let priceStat = await carbotService.getStat(vehicleId.toString(), "1");
@@ -85,6 +68,47 @@ const VehiclePage: NextPage = () => {
       setVehicleMake(arr[0]);
     }
   }, [vehicleName]);
+
+  useEffect(() => {
+    if (
+      selectedReport === "90d" ||
+      selectedReport === "1yr" ||
+      selectedReport === "3yr"
+    ) {
+      const fetchRollingMedian = async () => {
+        let data;
+        if (selectedReport === "90d" && vehicleId) {
+          data = await carbotService.get90DayPriceReport(vehicleId.toString());
+        } else if (selectedReport === "1yr" && vehicleId) {
+          data = await carbotService.get1yrPriceReport(vehicleId.toString());
+        } else if (selectedReport === "3yr" && vehicleId) {
+          data = await carbotService.get3yrPriceReport(vehicleId.toString());
+        }
+
+        setRollingMedian(data);
+      };
+
+      if (selectedReport && vehicleId) {
+        fetchRollingMedian();
+      }
+    }
+  }, [selectedReport, vehicleId]);
+
+  interface ReportProps {
+    priceReport: any;
+  }
+
+  function Report90d({ priceReport }: ReportProps) {
+    return <CarbotLineChart priceReport={priceReport} key={"90d-report"} />;
+  }
+
+  function Report1yr({ priceReport }: ReportProps) {
+    return <CarbotLineChart priceReport={priceReport} key={"1yr-report"} />;
+  }
+
+  function Report3yr({ priceReport }: ReportProps) {
+    return <CarbotLineChart priceReport={priceReport} key={"3yr-report"} />;
+  }
 
   return (
     <>
@@ -197,7 +221,15 @@ const VehiclePage: NextPage = () => {
                 <div className="items-center text-center col-span-4 overflow-x-auto md:mt-6">
                   {rollingMedian && (
                     <>
-                      <CarbotLineChart priceReport={rollingMedian} />
+                      {selectedReport === "90d" && (
+                        <Report90d priceReport={rollingMedian} />
+                      )}
+                      {selectedReport === "1yr" && (
+                        <Report1yr priceReport={rollingMedian} />
+                      )}
+                      {selectedReport === "3yr" && (
+                        <Report3yr priceReport={rollingMedian} />
+                      )}
                     </>
                   )}
                 </div>
@@ -207,20 +239,23 @@ const VehiclePage: NextPage = () => {
                   <HyperButton
                     text="90d"
                     onClick={function (): void {
-                      console.log("Function not implemented.");
+                      setSelectedReport("90d");
                     }}
+                    active={selectedReport === "90d"}
                   />
                   <HyperButton
                     text="1y"
                     onClick={function (): void {
-                      console.log("Function not implemented.");
+                      setSelectedReport("1yr");
                     }}
+                    active={selectedReport === "1yr"}
                   />
                   <HyperButton
                     text="3y"
                     onClick={function (): void {
-                      console.log("Function not implemented.");
+                      setSelectedReport("3yr");
                     }}
+                    active={selectedReport === "3yr"}
                   />
                 </HyperButtonGroup>
               </div>

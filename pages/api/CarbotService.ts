@@ -10,7 +10,6 @@ const baseUrl = "https://api.carbot.lol";
 class CarbotService {
   isLoading: boolean = false;
 
-
   async getDashboard(): Promise<IDashboardModel[]> {
     try {
       this.isLoading = true;
@@ -81,8 +80,8 @@ class CarbotService {
     }
   }
 
-  async getRollingMedianReport(
-    vehicleId: string
+  async get90DayPriceReport(
+    vehicleId?: string
   ): Promise<IPriceReportModel[]> {
     try {
       this.isLoading = true;
@@ -99,10 +98,43 @@ class CarbotService {
     }
   }
 
-  async getStat(
-    vehicleId: string,
-    statId: string
-  ): Promise<IStatModel> {
+  async get1yrPriceReport(
+    vehicleId?: string
+  ): Promise<IPriceReportModel[]> {
+    try {
+      this.isLoading = true;
+      const response = await axios.get<IPriceReportModel[]>(
+        `${baseUrl}/report/4?vehicleId=${vehicleId}`
+      );
+      this.isLoading = false;
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    } finally {
+      this.isLoading = false;
+    }
+  }
+
+  async get3yrPriceReport(
+    vehicleId?: string
+  ): Promise<IPriceReportModel[]> {
+    try {
+      this.isLoading = true;
+      const response = await axios.get<IPriceReportModel[]>(
+        `${baseUrl}/report/5?vehicleId=${vehicleId}`
+      );
+      this.isLoading = false;
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    } finally {
+      this.isLoading = false;
+    }
+  }
+
+  async getStat(vehicleId: string, statId: string): Promise<IStatModel> {
     try {
       this.isLoading = true;
       const response = await axios.get<IStatModel>(

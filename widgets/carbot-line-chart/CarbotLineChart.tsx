@@ -121,7 +121,7 @@ const CarbotLineChart = (props: ICarbotLineChart) => {
             ],
           },
           marker: {
-            radius: 2,
+            enabled: false,
           },
           lineWidth: 1,
           states: {
