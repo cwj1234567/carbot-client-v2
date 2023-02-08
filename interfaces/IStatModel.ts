@@ -1,7 +1,8 @@
 interface IStatModel
  {
-    value: number,
-    percentage: number
+    currentValue: number,
+    previousValue: number,
+    percentageChange: number
 }
 
 export default IStatModel;

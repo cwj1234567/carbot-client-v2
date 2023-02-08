@@ -4,6 +4,7 @@ import IDashboardModel from "../../interfaces/IDashboardModel";
 import IAuctionResponse from "../../interfaces/responses/IAuctionResponse";
 import IPriceReportModel from "../../interfaces/IPriceReportModel";
 import IStatModel from "../../interfaces/IStatModel";
+import IStatResponse from "../../interfaces/responses/IStatResponse";
 
 const baseUrl = "https://api.carbot.lol";
 
@@ -134,11 +135,11 @@ class CarbotService {
     }
   }
 
-  async getStat(vehicleId: string, statId: string): Promise<IStatModel> {
+  async getStat(vehicleId: string): Promise<IStatResponse> {
     try {
       this.isLoading = true;
-      const response = await axios.get<IStatModel>(
-        `${baseUrl}/stat/${statId}?vehicleId=${vehicleId}`
+      const response = await axios.get<IStatResponse>(
+        `${baseUrl}/stat/${vehicleId}`
       );
       this.isLoading = false;
       return response.data;

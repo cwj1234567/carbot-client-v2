@@ -8,6 +8,7 @@ import HyperButton from "../../../components/hyper-button/HyperButton";
 import StatCard from "../../../components/stat-card/StatCard";
 import IPriceReportModel from "../../../interfaces/IPriceReportModel";
 import IStatModel from "../../../interfaces/IStatModel";
+import IStatResponse from "../../../interfaces/responses/IStatResponse";
 import AuctionTable from "../../../widgets/auction-table/AuctionTable";
 import CarbotLineChart from "../../../widgets/carbot-line-chart/CarbotLineChart";
 import { carbotService } from "../../api/ServiceInitializer";
@@ -18,20 +19,11 @@ const VehiclePage: NextPage = () => {
 
   const [activeTab, setActiveTab] = useState<string>("price");
  
-  const [priceStat, setPriceStat] = useState<IStatModel | undefined>(undefined);
-  const [transactionStat, setTransactionStat] = useState<
-    IStatModel | undefined
-  >(undefined);
-  const [volumeStat, setVolumeStat] = useState<IStatModel | undefined>(
-    undefined
-  );
-
+  const [stat, setStat] = useState<IStatResponse | undefined>(undefined);
+  
   const [vehicleMake, setVehicleMake] = useState<string | undefined>(undefined);
 
-  const [selectedReport, setSelectedReport] = useState<string | undefined>(
-  
-  );
-
+  const [selectedReport, setSelectedReport] = useState<string | undefined>(undefined);
   const [s90dReport, sets90dReport] = useState<IPriceReportModel[] | undefined>(undefined);
   const [s1yrReport, sets1yrReport] = useState<IPriceReportModel[] | undefined>(undefined);
   const [s3yrReport, sets3yrReport] = useState<IPriceReportModel[] | undefined>(undefined);
@@ -50,26 +42,11 @@ const VehiclePage: NextPage = () => {
     
       fetchReport();
 
-      const fetchPriceStat = async () => {
-        let priceStat = await carbotService.getStat(vehicleId.toString(), "1");
-        setPriceStat(priceStat);
+      const fetchStat = async () => {
+        let stat = await carbotService.getStat(vehicleId.toString());
+        setStat(stat);
       };
-      fetchPriceStat();
-
-      const fetchVolumeStat = async () => {
-        let volumeStat = await carbotService.getStat(vehicleId.toString(), "2");
-        setVolumeStat(volumeStat);
-      };
-      fetchVolumeStat();
-
-      const fetchTransactionStat = async () => {
-        let transactionStat = await carbotService.getStat(
-          vehicleId.toString(),
-          "3"
-        );
-        setTransactionStat(transactionStat);
-      };
-      fetchTransactionStat();
+      fetchStat();
     }
   }, [vehicleId]);
 
@@ -179,14 +156,14 @@ const VehiclePage: NextPage = () => {
               <div className="p-4 md:mt-4 w-full flex flex-col">
                 <div className="border-b">
                   <div className="mb-4">
-                    {priceStat && (
+                    {stat && (
                       <>
                         <StatCard
                           title="Median Price"
-                          value={priceStat.value}
+                          value={stat.price.currentValue}
                           subtitle={``}
                           cash={true}
-                          percentage={priceStat.percentage}
+                          percentage={stat.price.percentageChange}
                         />
                       </>
                     )}
@@ -194,28 +171,28 @@ const VehiclePage: NextPage = () => {
                 </div>
                 <div className="border-b">
                   <div className="mb-4 mt-4">
-                    {volumeStat && (
+                    {stat && (
                       <>
                         <StatCard
                           title="Sales Volume"
-                          value={volumeStat.value}
+                          value={stat.volume.currentValue}
                           subtitle={``}
                           cash={true}
-                          percentage={volumeStat.percentage}
+                          percentage={stat.volume.percentageChange}
                         />
                       </>
                     )}
                   </div>
                 </div>
                 <div className="mt-4 mb-1">
-                  {transactionStat && (
+                  {stat && (
                     <>
                       <StatCard
                         title="Transactions"
-                        value={transactionStat.value}
+                        value={stat.transactions.currentValue}
                         subtitle={``}
                         cash={false}
-                        percentage={transactionStat.percentage}
+                        percentage={stat.transactions.percentageChange}
                       />
                     </>
                   )}
