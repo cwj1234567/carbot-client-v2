@@ -163,7 +163,7 @@ const VehiclePage: NextPage = () => {
                           value={stat.price.currentValue}
                           subtitle={``}
                           cash={true}
-                          percentage={stat.price.percentageChange}
+                          percentage={stat.price.percentChange}
                         />
                       </>
                     )}
@@ -178,7 +178,7 @@ const VehiclePage: NextPage = () => {
                           value={stat.volume.currentValue}
                           subtitle={``}
                           cash={true}
-                          percentage={stat.volume.percentageChange}
+                          percentage={stat.volume.percentChange}
                         />
                       </>
                     )}
@@ -192,7 +192,7 @@ const VehiclePage: NextPage = () => {
                         value={stat.transactions.currentValue}
                         subtitle={``}
                         cash={false}
-                        percentage={stat.transactions.percentageChange}
+                        percentage={stat.transactions.percentChange}
                       />
                     </>
                   )}
